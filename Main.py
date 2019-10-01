@@ -5,11 +5,16 @@ import json
 import pprint
 import os
 import hashlib
+from Cube import Cube
+
+def main():
+    json = jsonReading()
+    cube = Cube(json)
+    print(cube.md5)
 
 def jsonReading():
     for file in os.listdir('.'):
         if os.path.splitext(file)[1] == ".json":
-            print(file)
             json_file = file
 
     if json_file:
@@ -18,17 +23,5 @@ def jsonReading():
 
     return data
 
-def generateMD5():
-    cadena = ''
-    for value in json_file.values():
-        for x in value:
-                cadena += ''.join(map(str,x))
-
-    print("string: "+cadena)
-    md5 = hashlib.md5(cadena.encode('utf-8')).hexdigest()
-    print("md5: "+md5)
-
 if __name__ == '__main__':
-    json_file = jsonReading()
-    pprint.pprint(json_file)
-    generateMD5()
+    main()
