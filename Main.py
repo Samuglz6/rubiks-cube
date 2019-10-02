@@ -2,15 +2,22 @@
 #-*- coding: utf-8 -*-
 
 import json
-import pprint
 import os
-import hashlib
 from Cube import Cube
+from pprint import pprint
+
 
 def main():
     json = jsonReading()
     cube = Cube(json)
     print(cube.md5)
+    
+    pprint(cube.Faces)
+    cube.moveL0()
+    pprint(cube.Faces)
+    cube.movel0()
+    pprint(cube.Faces)
+    
 
 def jsonReading():
     for file in os.listdir('.'):
