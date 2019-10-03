@@ -20,6 +20,24 @@ class Cube():
 
     def moveL0(self):
         self.Faces["LEFT"] = np.rot90(self.Faces["LEFT"]).tolist()
+        self.md5 = self.generateMD5()
 
     def movel0(self):
-        self.Faces["LEFT"] = np.rot90(self.Faces["LEFT"],2).tolist()
+        self.Faces["LEFT"] = np.rot90(self.Faces["LEFT"],-1).tolist()
+        self.md5 = self.generateMD5()
+
+    def moveD0(self):
+        self.Faces["DOWN"] = np.rot90(self.Faces["DOWN"]).tolist()
+        self.md5 = self.generateMD5()
+
+    def moved0(self):
+        self.Faces["DOWN"] = np.rot90(self.Faces["DOWN"],-1).tolist()
+        self.md5 = self.generateMD5()
+
+    def moveB0(self):
+        self.Faces["BACK"] = np.rot90(self.Faces["BACK"]).tolist()
+        self.md5 = self.generateMD5()
+
+    def moveb0(self):
+        self.Faces["BACK"] = np.rot90(self.Faces["BACK"],-1).tolist()
+        self.md5 = self.generateMD5()

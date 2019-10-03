@@ -11,13 +11,17 @@ def main():
     json = jsonReading()
     cube = Cube(json)
     print(cube.md5)
-    
+
     pprint(cube.Faces)
+
     cube.moveL0()
     pprint(cube.Faces)
+    print(cube.md5)
+
     cube.movel0()
     pprint(cube.Faces)
-    
+    print(cube.md5)
+
 
 def jsonReading():
     for file in os.listdir('.'):
