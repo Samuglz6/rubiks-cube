@@ -17,7 +17,7 @@ class Cube():
         md5 = hashlib.md5(cadena.encode('utf-8')).hexdigest()
 
         return md5
-
+   
     def b(self, num):
         
         if num == 0: self.Faces["BACK"] = np.rot90(self.Faces["BACK"]).tolist()

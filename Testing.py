@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
 
-import Main
+from JsonManager import JsonManager as jManager
 from Cube import Cube
 from pprint import pprint
 
+
 def start():
-    cube = Cube(Main.jsonReading())
+    cube = Cube(jManager.jsonReading())
     menu(cube)
 
 def menu(cube):
@@ -40,6 +41,9 @@ def testOneMove(cube):
             break
         else:
             print("Not a valid selection")
+
+    jManager.jsonWriting('testing', cube)
+    print("Results have been saved in testing.json")
             
 def testingBackFront(cube):
     for n in range(3):
