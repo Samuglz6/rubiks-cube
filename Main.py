@@ -12,7 +12,7 @@ def main():
     cube = Cube(json)
 
     print(cube.md5)
-    testingMoves(cube)
+    testing(cube)
 
 def jsonReading():
     for file in os.listdir('.'):
@@ -25,7 +25,7 @@ def jsonReading():
 
     return data
 
-def testingMoves(cube):
+def testing(cube):
     '''for value in cube.Faces.keys()
         print(value)
         for x in cube.Faces[value]:
@@ -34,12 +34,11 @@ def testingMoves(cube):
     for n in range(3):
         print("Aplying B%d movement" %n)
         cube.B(n)
-        pprint(cube.Faces)
         
     for n in range(3):
         print("Aplying b%d movement" %n)
         cube.b(n)
-        pprint(cube.Faces)
+
 
     
 
