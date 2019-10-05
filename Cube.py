@@ -18,26 +18,31 @@ class Cube():
 
         return md5
 
-    def moveL0(self):
-        self.Faces["LEFT"] = np.rot90(self.Faces["LEFT"]).tolist()
+    def b(self, num):
+        
+        if num == 0: self.Faces["BACK"] = np.rot90(self.Faces["BACK"]).tolist()
+        if num == 2: self.Faces["FRONT"] = np.rot90(self.Faces["FRONT"]).tolist()
+        
+        for x in range(3):
+            bubble = self.Faces["LEFT"][num][x]
+            self.Faces["LEFT"][num][x] = self.Faces["UP"][num][x]
+            self.Faces["UP"][num][x] = self.Faces["RIGHT"][num][x]
+            self.Faces["RIGHT"][num][x] = self.Faces["DOWN"][num][x]
+            self.Faces["DOWN"][num][x] = bubble
+
         self.md5 = self.generateMD5()
 
-    def movel0(self):
-        self.Faces["LEFT"] = np.rot90(self.Faces["LEFT"],-1).tolist()
+    def B(self, num):
+        if num == 0: self.Faces["BACK"] = np.rot90(self.Faces["BACK"],-1).tolist()
+        if num == 2: self.Faces["FRONT"] = np.rot90(self.Faces["FRONT"],-1).tolist()
+        
+        for x in range(3):
+            bubble = self.Faces["LEFT"][num][x]
+            self.Faces["LEFT"][num][x] = self.Faces["DOWN"][num][x]
+            self.Faces["UP"][num][x] = bubble
+            self.Faces["RIGHT"][num][x] = self.Faces["UP"][num][x]
+            self.Faces["DOWN"][num][x] = self.Faces["RIGHT"][num][x]
+        
         self.md5 = self.generateMD5()
 
-    def moveD0(self):
-        self.Faces["DOWN"] = np.rot90(self.Faces["DOWN"]).tolist()
-        self.md5 = self.generateMD5()
-
-    def moved0(self):
-        self.Faces["DOWN"] = np.rot90(self.Faces["DOWN"],-1).tolist()
-        self.md5 = self.generateMD5()
-
-    def moveB0(self):
-        self.Faces["BACK"] = np.rot90(self.Faces["BACK"]).tolist()
-        self.md5 = self.generateMD5()
-
-    def moveb0(self):
-        self.Faces["BACK"] = np.rot90(self.Faces["BACK"],-1).tolist()
-        self.md5 = self.generateMD5()
+    

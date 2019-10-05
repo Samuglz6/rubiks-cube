@@ -14,14 +14,13 @@ def main():
 
     pprint(cube.Faces)
 
-    cube.moveL0()
-    pprint(cube.Faces)
-    print(cube.md5)
-
-    cube.movel0()
-    pprint(cube.Faces)
-    print(cube.md5)
-
+    cube.B(0)
+    print('-----------------')
+    for value in cube.Faces.keys():
+        print(value)
+        for x in cube.Faces[value]:
+            print(x)
+        print('---------')
 
 def jsonReading():
     for file in os.listdir('.'):
@@ -33,6 +32,7 @@ def jsonReading():
             data = json.load(output)
 
     return data
+    
 
 if __name__ == '__main__':
     main()
