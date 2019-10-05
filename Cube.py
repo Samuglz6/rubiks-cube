@@ -39,10 +39,8 @@ class Cube():
         for x in range(3):
             bubble = self.Faces["LEFT"][num][x]
             self.Faces["LEFT"][num][x] = self.Faces["DOWN"][num][x]
-            self.Faces["UP"][num][x] = bubble
-            self.Faces["RIGHT"][num][x] = self.Faces["UP"][num][x]
             self.Faces["DOWN"][num][x] = self.Faces["RIGHT"][num][x]
+            self.Faces["RIGHT"][num][x] = self.Faces["UP"][num][x]
+            self.Faces["UP"][num][x] = bubble
         
         self.md5 = self.generateMD5()
-
-    

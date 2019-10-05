@@ -10,17 +10,9 @@ from pprint import pprint
 def main():
     json = jsonReading()
     cube = Cube(json)
+
     print(cube.md5)
-
-    pprint(cube.Faces)
-
-    cube.B(0)
-    print('-----------------')
-    for value in cube.Faces.keys():
-        print(value)
-        for x in cube.Faces[value]:
-            print(x)
-        print('---------')
+    testingMoves(cube)
 
 def jsonReading():
     for file in os.listdir('.'):
@@ -32,6 +24,23 @@ def jsonReading():
             data = json.load(output)
 
     return data
+
+def testingMoves(cube):
+    '''for value in cube.Faces.keys()
+        print(value)
+        for x in cube.Faces[value]:
+            print(x)'''
+    
+    for n in range(3):
+        print("Aplying B%d movement" %n)
+        cube.B(n)
+        pprint(cube.Faces)
+        
+    for n in range(3):
+        print("Aplying b%d movement" %n)
+        cube.b(n)
+        pprint(cube.Faces)
+
     
 
 if __name__ == '__main__':
