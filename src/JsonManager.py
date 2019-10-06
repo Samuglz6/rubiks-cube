@@ -6,10 +6,13 @@ import json
 class JsonManager():
     
     def jsonReading():
-        for file in os.listdir('.'):
-            '''if os.path.splitext(file)[1] == ".json":'''
-            if file == "cube.json":
-                json_file = file
+        print("Select the json file:")
+        for file in os.listdir('../json'):
+            if os.path.splitext(file)[1] == ".json":
+                print('-'+os.path.splitext(file)[0])
+                
+        selected = input("Selected file:")
+        json_file = '../json/'+selected+'.json'     
 
         if json_file:
             with open(json_file) as output:
