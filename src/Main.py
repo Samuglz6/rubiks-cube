@@ -11,10 +11,8 @@ def main():
         print("ERROR. The selected json does not contains a NxNxN cube.")
         exit()
     cube = Cube(json)
-    print(cube.md5)
-    pprint(cube.faces)
-    cube.l(2)
-    pprint(cube.faces)
+    print(cube)
+    print(cube.clone)
 
 if __name__ == '__main__':
     main()
