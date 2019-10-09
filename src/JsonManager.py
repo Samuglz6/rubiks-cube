@@ -20,9 +20,15 @@ class JsonManager():
                 output.close()
 
         size = len(list(data.values())[0]);
-        for values in data.values():
-            if len(values) != size:
-                data = None
+        if len(list(data.keys())) != 6:
+            data = None
+        else:
+            for values in data.values():
+                if len(values) != size:
+                    data = None
+                for element in values:
+                    if len(element) != size:
+                        data = None
 
         return data
 

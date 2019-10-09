@@ -7,7 +7,9 @@ from pprint import pprint
 
 def main():
     json = jManager.jsonReading()
-    if json == None: exit()
+    if json == None:
+        print("ERROR. The selected json does not contains a NxNxN cube.")
+        exit()
     cube = Cube(json)
     print(cube.md5)
     pprint(cube.faces)
