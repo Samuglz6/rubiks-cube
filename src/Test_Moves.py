@@ -26,7 +26,7 @@ def menu(cube):
         else: print("Not a valid selection")
 
 def testOneMove(cube):
-    moves = ["B0", "B1", "B2", "b0", "b1", "b2", "L0", "L1", "L2", "l0", "l1", "l2"]
+    moves = ["B0", "B1", "B2", "b0", "b1", "b2", "L0", "L1", "L2", "l0", "l1", "l2", "D0", "D1", "D2", "d0", "d1", "d2"]
     while True:
         key = 0
         print("Opciones de movimientos: ")
@@ -45,6 +45,10 @@ def testOneMove(cube):
                 cube.l(int(list(key)[1]))
             elif list(key)[0] == 'L':
                 cube.L(int(list(key)[1]))
+            elif list(key)[0] == 'D':
+                cube.D(int(list(key)[1]))
+            elif list(key)[0] == 'd':
+                cube.d(int(list(key)[1]))
             break
         else:
             print("Not a valid selection")

@@ -58,8 +58,8 @@ class Cube():
 
         for x in range(self.size):
             bubble = self.faces["FRONT"][x][num]
-            self.faces["FRONT"][x][num] = self.faces["UP"][abs(x-(self.size-1))][abs(num-(self.size-1))]
-            self.faces["UP"][abs(x-(self.size-1))][abs(num-(self.size-1))] = self.faces["BACK"][x][num]
+            self.faces["FRONT"][x][num] = self.faces["UP"][(self.size-1)-x][(self.size-1)-num]
+            self.faces["UP"][(self.size-1)-x][(self.size-1)-num] = self.faces["BACK"][x][num]
             self.faces["BACK"][x][num] = self.faces["DOWN"][x][num]
             self.faces["DOWN"][x][num] = bubble
 
@@ -76,7 +76,37 @@ class Cube():
             bubble = self.faces["FRONT"][x][num]
             self.faces["FRONT"][x][num] = self.faces["DOWN"][x][num]
             self.faces["DOWN"][x][num] = self.faces["BACK"][x][num]
-            self.faces["BACK"][x][num] = self.faces["UP"][abs(x-(self.size-1))][abs(num-(self.size-1))]
-            self.faces["UP"][abs(x-(self.size-1))][abs(num-(self.size-1))] = bubble
+            self.faces["BACK"][x][num] = self.faces["UP"][(self.size-1)-x][(self.size-1)-num]
+            self.faces["UP"][(self.size-1)-x][(self.size-1)-num] = bubble
+
+        self.md5 = self.generateMD5()
+
+    def D(self, num):
+        if num == 0:
+            self.faces["DOWN"] = np.rot90(self.faces["DOWN"], -1).tolist()
+        if num == 2:
+            self.faces["UP"] = np.rot90(self.faces["UP"], -1).tolist()
+
+        for x in range(self.size):
+            bubble = self.faces["FRONT"][num][x]
+            self.faces["FRONT"][num][x] = self.faces["RIGHT"][(self.size-1)-x][num]
+            self.faces ["RIGHT"][(self.size-1)-x][num] = self.faces["BACK"][(self.size-1)-num][(self.size-1)-x]
+            self.faces["BACK"][(self.size-1)-num][(self.size-1)-x] = self.faces["LEFT"][(self.size-1)-x][(self.size-1)-num]
+            self.faces["LEFT"][(self.size-1)-x][(self.size-1)-num] = bubble
+
+        self.md5 = self.generateMD5()
+
+    def d(self, num):
+        if num == 0:
+            self.faces["DOWN"] = np.rot90(self.faces["DOWN"]).tolist()
+        if num == 2:
+            self.faces["UP"] = np.rot90(self.faces["UP"]).tolist()
+
+        for x in range(self.size):
+            bubble = self.faces["FRONT"][num][x]
+            self.faces["FRONT"][num][x] = self.faces["LEFT"][(self.size-1)-x][(self.size-1)-num]
+            self.faces["LEFT"][(self.size-1)-x][(self.size-1)-num] = self.faces["BACK"][(self.size-1)-num][(self.size-1)-x]
+            self.faces["BACK"][(self.size-1)-num][(self.size-1)-x] = self.faces["RIGHT"][(self.size-1)-x][num]
+            self.faces["RIGHT"][(self.size-1)-x][num] = bubble
 
         self.md5 = self.generateMD5()
