@@ -6,9 +6,13 @@ from Cube import Cube
 from pprint import pprint
 
 def main():
-    cube = Cube(jManager.jsonReading())
+    json = jManager.jsonReading()
+    if json == None: exit()
+    cube = Cube(json)
     print(cube.md5)
-    pprint(cube.Faces)
+    pprint(cube.faces)
+    cube.l(2)
+    pprint(cube.faces)
 
 if __name__ == '__main__':
     main()
