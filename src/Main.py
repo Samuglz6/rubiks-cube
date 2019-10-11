@@ -6,9 +6,13 @@ from Cube import Cube
 from pprint import pprint
 
 def main():
-    cube = Cube(jManager.jsonReading())
-    print(cube.md5)
-    pprint(cube.Faces)
+    json = jManager.jsonReading()
+    if json == None:
+        print("ERROR. The selected json does not contains a NxNxN cube.")
+        exit()
+    cube = Cube(json)
+    print(cube)
+    print(cube.clone)
 
 if __name__ == '__main__':
     main()
