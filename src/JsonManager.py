@@ -3,15 +3,27 @@
 import os
 import json
 
+
 class JsonManager():
 
     def jsonReading():
-        print("Select the json file:")
-        for file in os.listdir('../json'):
-            if os.path.splitext(file)[1] == ".json":
-                print('-'+os.path.splitext(file)[0])
+        listed_files = []
 
-        selected = input("Selected file:")
+        while(1):
+            print("Select the json file:")
+            for file in os.listdir('../json'):
+                if os.path.splitext(file)[1] == ".json":
+                    listed_files.append(os.path.splitext(file)[0])
+
+            for item in listed_files:
+                print('-'+item)
+
+            selected = input("Selected file:")
+            if selected not in listed_files:
+                print("ERROR. Selected file is not valid.\n")
+            else:
+                break
+
         json_file = '../json/'+selected+'.json'
 
         if json_file:
@@ -34,5 +46,5 @@ class JsonManager():
 
     def jsonWriting(name, cube):
         with open('../output/'+name+'.json','w+') as file:
-            json.dump(cube.faces, file)
+            file.write(json.dumps(cube.faces))
             file.close()

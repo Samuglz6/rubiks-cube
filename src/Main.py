@@ -12,7 +12,6 @@ def main():
         exit()
     cube = Cube(json)
     print(cube)
-    print(cube.clone)
 
 if __name__ == '__main__':
     main()
