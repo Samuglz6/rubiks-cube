@@ -13,10 +13,15 @@ def main():
     cube = Cube(json)
     cube.l(3)
     cube.D(1)
+    cube.l(1)
+    cube.d(0)
 
-    cube2 = Cube(jManager.jsonReading("../testing/x10cube_D1.json"))
+    cube2 = Cube(jManager.jsonReading("../testing/x10cube_d0.json"))
 
-    print(cube.codigo)
-    print(cube2.codigo)
+    print(cube.md5)
+    print(cube2.md5)
+
+    jManager.jsonWriting("../testing/output/","test_d0",cube)
+
 if __name__ == '__main__':
     main()

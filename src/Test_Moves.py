@@ -7,7 +7,7 @@ from pprint import pprint
 import copy
 
 def start():
-    cube = Cube(jManager.jsonReading("../json/10cube.json"))
+    cube = Cube(jManager.jsonReading("../json/x10cube.json"))
     print(cube.md5)
     while(1):
         testMove(cube)
