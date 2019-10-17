@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
 
 from JsonManager import JsonManager as jManager
 from Cube import Cube
@@ -7,7 +9,7 @@ from pprint import pprint
 import copy
 
 def start():
-    cube = Cube(jManager.jsonReading("../json/x10cube.json"))
+    cube = Cube(jManager.jsonReading("../../json/x10cube.json"))
     print(cube.md5)
     while(1):
         testMove(cube)
@@ -44,7 +46,7 @@ def testMove(cube):
         else:
             print("Not a valid selection")
 
-    jManager.jsonWriting('../testing/output/','testing', cube)
+    jManager.jsonWriting('../../testing/output/','testing', cube)
     #print("Results have been saved in testing.json")
     print(cube.md5)
     #print(cube.faces)
