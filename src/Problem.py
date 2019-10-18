@@ -2,15 +2,20 @@
 #-*- coding: utf-8 -*-
 
 from StateSpace import StateSpace
+from Cube import Cube
 from State import State
 
-def Problem():
-    def __init__(self, state, stateSpace):
-        self.initial = state
-        self.stateSpace = StateSpace
+class Problem():
+    def __init__(self, json):
+        self.initial = State(Cube(json))
+        self.stateSpace = StateSpace()
 
-    def isGoal(state):
-        for face in state.cube.faces.keys():
-            for row in state.cube.faces[face]:
-                print(row)
-        return false
+    def isGoal(self, state):
+        goal = False
+        for key in state.current.faces.keys():
+            for element in state.current.faces[key]:
+                if(len(set(element))==1):
+                    goal = True
+                else:
+                    return False
+        return goal

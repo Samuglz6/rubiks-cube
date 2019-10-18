@@ -3,6 +3,6 @@
 
 from Cube import Cube
 
-def State():
+class State():
     def __init__(self, cube):
-        self.cube = cube
+        self.current = cube
