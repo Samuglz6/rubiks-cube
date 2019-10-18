@@ -3,18 +3,21 @@
 
 from TreeNode import TreeNode
 
-def Frontier():
-    def __init__:
-        self.frontier = create()
+class Frontier():
+    def __init__(self):
+        self.frontier = self.create()
 
-    def create():
-        return {}
+    def create(self):
+        return []
 
-    def insert(node):
-        self.frontier.append(node)
+    def insert(self, node):
+        if isinstance(node, TreeNode):
+            self.frontier.append(node)
+        else:
+            print("Not a valid node.")
 
-    def remove():
-        self.frontier.remove
+    def remove(self):
+        self.frontier.pop(0)
 
-    def isEmpty():
+    def isEmpty(self):
         return not self.frontier

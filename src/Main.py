@@ -7,7 +7,7 @@ from pprint import pprint
 from Problem import Problem
 
 def main():
-
+    test_isGoal()
 
 def test_isGoal():
     json = jManager.jsonReading("../json/x10cube.json")
