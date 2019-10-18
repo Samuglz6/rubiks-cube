@@ -47,9 +47,7 @@ def testMove(cube):
             print("Not a valid selection")
 
     jManager.jsonWriting('../../testing/output/','testing', cube)
-    #print("Results have been saved in testing.json")
-    print(cube.md5)
-    #print(cube.faces)
+    print("Results have been saved in testing.json")
 
 if __name__ == '__main__':
     start()

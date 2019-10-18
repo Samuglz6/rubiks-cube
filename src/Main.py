@@ -11,6 +11,7 @@ def main():
         print("ERROR. The selected json does not contains a NxNxN cube.")
         exit()
     cube = Cube(json)
+
     cube.l(3)
     cube.D(1)
     cube.l(1)
@@ -21,7 +22,6 @@ def main():
     print(cube.md5)
     print(cube2.md5)
 
-    jManager.jsonWriting("../testing/output/","test_d0",cube)
 
 if __name__ == '__main__':
     main()

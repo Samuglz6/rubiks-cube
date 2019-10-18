@@ -3,6 +3,7 @@
 
 import hashlib
 import numpy as np
+import copy
 
 class Cube():
     def __init__(self,json):
@@ -26,6 +27,9 @@ class Cube():
         md5 = hashlib.md5(self.codigo.encode('utf-8')).hexdigest()
 
         return md5
+
+    def clone(self):
+        return copy.copy(self)
 
     def b(self, num):
 
