@@ -6,9 +6,9 @@ import json
 
 class JsonManager:
 
-    def jsonReading(self, file=None):
-        if self is not None:
-            with open(self, 'r') as output:
+    def jsonReading(file):
+        if file is not None:
+            with open(file, 'r') as output:
                 data = json.load(output)
                 output.close()
         else:
@@ -16,9 +16,9 @@ class JsonManager:
 
             while 1:
                 print("Select the json file:")
-                for self in os.listdir('../json'):
-                    if os.path.splitext(self)[1] == ".json":
-                        listed_files.append(os.path.splitext(self)[0])
+                for node in os.listdir('../json'):
+                    if os.path.splitext(node)[1] == ".json":
+                        listed_files.append(os.path.splitext(node)[0])
 
                 for item in listed_files:
                     print('-' + item)
@@ -38,12 +38,12 @@ class JsonManager:
 
         return JsonManager.jsonChecking(data)
 
-    def jsonWriting(self, path, name, cube):
+    def jsonWriting(path, name, cube):
         with open(path + name + '.json', 'w+') as file:
             file.write(json.dumps(cube.faces))
             file.close()
 
-    def jsonComparison(self, file1, file2):
+    def jsonComparison(file1, file2):
 
         if file1 == file2:
             print("SUCCESS")
@@ -53,7 +53,7 @@ class JsonManager:
                 if file1[i] != file2[i]:
                     print(i, file1[i], file2[i])
 
-    def jsonChecking(self, data):
+    def jsonChecking(data):
         size = len(list(data.values())[0])
         if len(list(data.keys())) != 6:
             data = None

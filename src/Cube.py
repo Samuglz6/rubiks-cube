@@ -10,22 +10,15 @@ class Cube:
     def __init__(self, json):
         self.size = len(list(json.values())[0])
         self.faces = json
-        self.code = self.generateCode()
-        self.md5 = self.generateMD5()
-
-    def reload(self):
-        self.code = self.generateCode()
-        self.md5 = self.generateMD5()
+        self.md5 = self.generateCode()
 
     def generateCode(self):
         string = ''
         for value in self.faces.values():
             for x in value:
                 string += ''.join(map(str, x))
-        return string
 
-    def generateMD5(self):
-        md5 = hashlib.md5(self.code.encode('utf-8')).hexdigest()
+        md5 = hashlib.md5(string.encode('utf-8')).hexdigest()
 
         return md5
 
@@ -46,7 +39,7 @@ class Cube:
             self.faces["RIGHT"][num][x] = self.faces["DOWN"][num][x]
             self.faces["DOWN"][num][x] = bubble
 
-        self.reload()
+        self.generateCode()
 
     def B(self, num):
         if num == 0:
@@ -61,7 +54,7 @@ class Cube:
             self.faces["RIGHT"][num][x] = self.faces["UP"][num][x]
             self.faces["UP"][num][x] = bubble
 
-        self.reload()
+        self.generateCode()
 
     def L(self, num):
         if num == 0:
@@ -76,7 +69,7 @@ class Cube:
             self.faces["BACK"][x][num] = self.faces["DOWN"][x][num]
             self.faces["DOWN"][x][num] = bubble
 
-        self.reload()
+        self.generateCode()
 
     def l(self, num):
         if num == 0:
@@ -91,7 +84,7 @@ class Cube:
             self.faces["BACK"][x][num] = self.faces["UP"][(self.size - 1) - x][(self.size - 1) - num]
             self.faces["UP"][(self.size - 1) - x][(self.size - 1) - num] = bubble
 
-        self.reload()
+        self.generateCode()
 
     def D(self, num):
         if num == 0:
@@ -108,7 +101,7 @@ class Cube:
                 (self.size - 1) - x]
             self.faces["LEFT"][x][(self.size - 1) - num] = bubble
 
-        self.reload()
+        self.generateCode()
 
     def d(self, num):
         if num == 0:
@@ -125,4 +118,4 @@ class Cube:
                 num]
             self.faces["RIGHT"][(self.size - 1) - x][num] = bubble
 
-        self.reload()
+        self.generateCode()
