@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from TreeNode import TreeNode
 
-class Frontier():
+
+class Frontier:
     def __init__(self):
         self.frontier = self.create()
 

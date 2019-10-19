@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from JsonManager import JsonManager as jManager
 import Cube
-from pprint import pprint
 from Problem import Problem
+
 
 def main():
     test_isGoal()
+
 
 def test_isGoal():
     json = jManager.jsonReading("../json/x10cube.json")
@@ -17,9 +18,10 @@ def test_isGoal():
     else:
         print("Failure")
 
+
 def test_10():
     json = jManager.jsonReading()
-    if json == None:
+    if json is None:
         print("ERROR. The selected json does not contains a NxNxN cube.")
         exit()
     cube = Cube(json)
@@ -33,6 +35,7 @@ def test_10():
 
     print(cube.md5)
     print(cube2.md5)
+
 
 if __name__ == '__main__':
     main()

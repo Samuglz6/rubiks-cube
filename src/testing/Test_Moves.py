@@ -1,28 +1,29 @@
 #!/usr/bin/python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import sys
+
 sys.path.append('../')
 
 from JsonManager import JsonManager as jManager
 from Cube import Cube
-from pprint import pprint
-import copy
+
 
 def start():
     cube = Cube(jManager.jsonReading("../../json/x10cube.json"))
     print(cube.md5)
-    while(1):
+    while 1:
         testMove(cube)
+
 
 def testMove(cube):
     letters = ["B", "b", "D", "d", "L", "l"]
     moves = []
     for element in letters:
         for number in range(cube.size):
-            moves.append(element+str(number))
+            moves.append(element + str(number))
     while True:
         key = 0
-        print("\nOpciones de movimientos: ")
+        print("\nOption's movements: ")
         print(",".join([item for item in moves]))
         try:
             key = input("Selection:")
@@ -46,8 +47,9 @@ def testMove(cube):
         else:
             print("Not a valid selection")
 
-    jManager.jsonWriting('../../testing/output/','testing', cube)
+    jManager.jsonWriting('../../testing/output/', 'testing', cube)
     print("Results have been saved in testing.json")
+
 
 if __name__ == '__main__':
     start()
