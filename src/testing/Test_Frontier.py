@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+
 import sys
 
 sys.path.append('../')
@@ -12,22 +13,20 @@ from JsonManager import JsonManager as jManager
 
 def main():
     problem = Problem(jManager.jsonReading("../../json/x4cube.json"))
-    node1 = TreeNode(problem.initial, 0, 0, 0)
-    node2 = TreeNode(problem.initial, 0, 0, 1)
-    node3 = TreeNode(problem.initial, 0, 0, 2)
-
     fringe = Frontier()
-    fringe.insert(node1)
-    fringe.insert(node2)
-    fringe.insert(node3)
+
+    for i in range(10):
+        node = TreeNode(problem.initial, 0, 0, 0)
+        fringe.insert(node)
 
     for element in fringe.frontier:
         print(element[0])
 
     print(fringe.isEmpty())
-    fringe.remove()
-    fringe.remove()
-    fringe.remove()
+
+    for i in fringe.frontier:
+        fringe.remove()
+
     print(fringe.isEmpty())
     print(problem.isGoal(problem.initial))
 

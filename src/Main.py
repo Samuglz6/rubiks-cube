@@ -2,21 +2,30 @@
 # -*- coding: utf-8 -*-
 
 from JsonManager import JsonManager as jManager
-import Cube
+from Cube import Cube
 from Problem import Problem
 
 
 def main():
-    test_isGoal()
+    test_validMoves()
 
 
 def test_isGoal():
     json = jManager.jsonReading("../json/x10cube.json")
     problem = Problem(json)
+
     if problem.isGoal(problem.initial):
         print("Success")
     else:
         print("Failure")
+
+
+def test_validMoves():
+    json = jManager.jsonReading("../json/x10cube.json")
+
+    cube = Cube(json)
+
+    print(cube.validMovements())
 
 
 def test_10():

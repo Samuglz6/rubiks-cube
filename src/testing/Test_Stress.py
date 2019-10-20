@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+
 import sys
 
 sys.path.append('../')
@@ -37,11 +38,10 @@ def stress_test(p, f):
                 end_time = time.time()
                 total_nodes += 1
                 current_time = end_time - init_time
-                print("%.11f \n %.11f \n\n" % (init_time, end_time))
                 t_avg += current_time
                 if current_time > t_max: t_max = current_time
                 if current_time < t_min: t_min = current_time
-                
+
             except MemoryError:
                 print("Memory Full")
                 printData(t_avg, t_max, t_min, total_nodes)
@@ -57,10 +57,6 @@ def printData(avg, t_max, t_min, total):
     print("Min time: %.15f" % t_min)
     print("\nTotal elements: %d" % total)
 
+
 if __name__ == '__main__':
-    try:
-        main()
-    except MemoryError:
-        print("Memory Full")
-        printData(t_avg, t_max, t_min, total_nodes)
-        sys.exit(1)
+    main()

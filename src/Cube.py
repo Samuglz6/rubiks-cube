@@ -25,6 +25,16 @@ class Cube:
     def clone(self):
         return copy.copy(self)
 
+    def validMovements(self):
+        moves = ["b", "B", "d", "D", "l", "L"]
+        possible = []
+
+        for move in moves:
+            for number in range(self.size):
+                possible.append(move+str(number))
+
+        return possible
+
     def b(self, num):
 
         if num == 0:

@@ -12,14 +12,9 @@ class Frontier:
     def create(self):
         return []
 
-    def useFirst(self, element):
-        return element[0]
-
     def insert(self, node):
         if isinstance(node, TreeNode):
-            self.frontier.append((node.f, node))
-            sorted(self.frontier, key=self.useFirst)
-
+            self.frontier.append()
         else:
             print("Not a valid node.")
 
