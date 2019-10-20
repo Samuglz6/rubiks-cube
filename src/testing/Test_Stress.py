@@ -32,29 +32,35 @@ def stress_test(p, f):
                     node = TreeNode(p.initial, 0, 0, total_nodes)
                 else:
                     node = TreeNode(p.initial, 0, 0, total_nodes)
-
                 init_time = time.time()
                 f.insert(node)
                 end_time = time.time()
                 total_nodes += 1
-                current_time = (end_time - init_time)
+                current_time = end_time - init_time
+                print("%.11f \n %.11f \n\n" % (init_time, end_time))
                 t_avg += current_time
                 if current_time > t_max: t_max = current_time
                 if current_time < t_min: t_min = current_time
+                
             except MemoryError:
                 print("Memory Full")
                 printData(t_avg, t_max, t_min, total_nodes)
+                sys.exit(1)
     except KeyboardInterrupt:
         print("Test has been interrupted")
         printData(t_avg, t_max, t_min, total_nodes)
 
 
 def printData(avg, t_max, t_min, total):
-    print("Average time: %.11f" % (avg / total))
-    print("Max time; %.11f" % t_max)
-    print("Min time: %.11f" % t_min)
-    print("Total elements: %d" % total)
-
+    print("Average time: %.15f" % (avg / total))
+    print("Max time; %.15f" % t_max)
+    print("Min time: %.15f" % t_min)
+    print("\nTotal elements: %d" % total)
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except MemoryError:
+        print("Memory Full")
+        printData(t_avg, t_max, t_min, total_nodes)
+        sys.exit(1)

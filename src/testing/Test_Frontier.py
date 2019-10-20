@@ -22,14 +22,10 @@ def main():
     fringe.insert(node3)
 
     for element in fringe.frontier:
-        print(element.f)
-
-    fringe.remove()
-
-    for element in fringe.frontier:
-        print(element.f)
+        print(element[0])
 
     print(fringe.isEmpty())
+    fringe.remove()
     fringe.remove()
     fringe.remove()
     print(fringe.isEmpty())

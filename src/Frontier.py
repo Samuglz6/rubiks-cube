@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+
 from TreeNode import TreeNode
 
 
@@ -11,9 +12,14 @@ class Frontier:
     def create(self):
         return []
 
+    def useFirst(self, element):
+        return element[0]
+
     def insert(self, node):
         if isinstance(node, TreeNode):
-            self.frontier.append(node)
+            self.frontier.append((node.f, node))
+            sorted(self.frontier, key=self.useFirst)
+
         else:
             print("Not a valid node.")
 
