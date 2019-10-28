@@ -11,4 +11,5 @@ class TreeNode:
         self.pathCost = cost
         self.action = action
         self.d = depth
-        self.f = random.random() * 1000000
+        self.f = random.random() * 10000
+        

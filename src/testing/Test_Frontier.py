@@ -22,13 +22,11 @@ def main():
     for element in fringe.frontier:
         print(element[0])
 
-    print(fringe.isEmpty())
-
-    for i in fringe.frontier:
+    for i in range(10):
         fringe.remove()
 
-    print(fringe.isEmpty())
-    print(problem.isGoal(problem.initial))
+    print("isEmpty: ", fringe.isEmpty())
+    print("isGoal: ", problem.isGoal(problem.initial))
 
 
 if __name__ == '__main__':
