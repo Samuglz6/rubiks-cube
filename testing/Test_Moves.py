@@ -2,17 +2,20 @@
 # -*- coding: utf-8 -*-
 import sys
 
-sys.path.append('../')
+sys.path.append('../src')
 
 from JsonManager import JsonManager as jManager
 from Cube import Cube
 
 
 def start():
-    cube = Cube(jManager.jsonReading("../../json/x10cube.json"))
+    cube = Cube(jManager.jsonReading("../json/x10cube.json"))
     print(cube.md5)
-    while 1:
-        testMove(cube)
+    try:
+        while 1:
+            testMove(cube)
+    except KeyboardInterrupt:
+        print("\nTest has been interrupted")
 
 
 def testMove(cube):
@@ -47,7 +50,7 @@ def testMove(cube):
         else:
             print("Not a valid selection")
 
-    jManager.jsonWriting('../../testing/output/', 'testing', cube)
+    jManager.jsonWriting('./output/', 'testing', cube)
     print("Results have been saved in testing.json")
 
 

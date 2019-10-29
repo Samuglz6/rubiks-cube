@@ -3,7 +3,7 @@
 
 import sys
 
-sys.path.append('../')
+sys.path.append('../src')
 
 from TreeNode import TreeNode
 from Frontier import Frontier
@@ -13,7 +13,7 @@ import time
 
 
 def main():
-    problem = Problem(jManager.jsonReading("../../json/x4cube.json"))
+    problem = Problem(jManager.jsonReading("../json/x4cube.json"))
     fringe = Frontier()
 
     start = time.time()

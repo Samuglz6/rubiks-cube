@@ -3,7 +3,7 @@
 
 import sys
 
-sys.path.append('../')
+sys.path.append('../src')
 
 from TreeNode import TreeNode
 from Frontier import Frontier
@@ -12,7 +12,7 @@ from JsonManager import JsonManager as jManager
 
 
 def main():
-    problem = Problem(jManager.jsonReading("../../json/x4cube.json"))
+    problem = Problem(jManager.jsonReading("../json/x4cube.json"))
     fringe = Frontier()
 
     for i in range(10):
