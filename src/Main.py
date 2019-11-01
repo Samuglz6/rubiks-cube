@@ -7,44 +7,37 @@ from Problem import Problem
 
 
 def main():
-    test_validMoves()
+    json = jManager.jsonReading("../json/x3cube.json")
+    cube = new Cube(json)
+    initial = new State(cube)
+    problem = new Problem(initial)
 
-
-def test_isGoal():
-    json = jManager.jsonReading("../json/x10cube.json")
-    problem = Problem(json)
-
-    if problem.isGoal(problem.initial):
-        print("Success")
+def bounded_search(problem, strategy, max_depth):
+    frontier = new Frontier()
+    init_node = new TreeNode(problem.initial, 0,0,0)
+    frontier.insert(init_node)
+    solution = False
+    while (not solution) and (not frontier.isEmpty()):
+        actual_node = frontier.remove()
+        if(problem.isGoal()):
+            solution = True
+        else:
+            successors_list = problem.stateSpace.successors(actual_node.state)
+            for nodes in successors_list:
+                successor_node = new TreeNode(None, 0, 0, max_depth, actual_node)
+                frontier.insert(successor_node)
+    if solution:
+        return createSolution(actual_node)
     else:
-        print("Failure")
+        return None
 
-
-def test_validMoves():
-    json = jManager.jsonReading("../json/x10cube.json")
-
-    cube = Cube(json)
-
-    print(cube.validMovements())
-
-
-def test_10():
-    json = jManager.jsonReading()
-    if json is None:
-        print("ERROR. The selected json does not contains a NxNxN cube.")
-        exit()
-    cube = Cube(json)
-
-    cube.l(3)
-    cube.D(1)
-    cube.l(1)
-    cube.d(0)
-
-    cube2 = Cube(jManager.jsonReading("../testing/x10cube_d0.json"))
-
-    print(cube.md5)
-    print(cube2.md5)
-
+def search(problem, strategy, max_depth, increment):
+    depth = increment
+    solution = None
+    while (not Solution) and (depth <= max_depth):
+        solution = bounded_search()
+        depth = actual_depth + increment
+    return solution
 
 if __name__ == '__main__':
     main()
