@@ -13,10 +13,14 @@ class Problem():
 
     def isGoal(self, state):
         goal = False
-        for key in state.current.faces.keys():
-            for element in state.current.faces[key]:
-                if len(set(element)) == 1:
+        goal_conditions = {'BACK': 3,'LEFT': 4, 'DOWN': 1, 'RIGHT': 5, 'UP': 0, 'FRONT': 2}
+
+        for face in state.current.faces.keys():
+            for element in state.current.faces[face]:
+                color = set(element)
+                if (len(color) == 1) and (next(iter(color)) == goal_conditions[face]):
                     goal = True
                 else:
                     return False
+
         return goal

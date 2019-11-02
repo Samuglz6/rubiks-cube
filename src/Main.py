@@ -2,19 +2,18 @@
 # -*- coding: utf-8 -*-
 
 from JsonManager import JsonManager as jManager
-from Cube import Cube
 from Problem import Problem
 
 
 def main():
-    json = jManager.jsonReading("../json/x3cube.json")
-    cube = new Cube(json)
-    initial = new State(cube)
-    problem = new Problem(initial)
+    json = jManager.jsonReading("../json/x4cube.json")
+    problem =  Problem(json)
+
+    print(problem.isGoal(problem.initial))
 
 def bounded_search(problem, strategy, max_depth):
-    frontier = new Frontier()
-    init_node = new TreeNode(problem.initial, 0,0,0)
+    frontier =  Frontier()
+    init_node =  TreeNode(problem.initial, 0,0,0)
     frontier.insert(init_node)
     solution = False
     while (not solution) and (not frontier.isEmpty()):
@@ -24,7 +23,7 @@ def bounded_search(problem, strategy, max_depth):
         else:
             successors_list = problem.stateSpace.successors(actual_node.state)
             for nodes in successors_list:
-                successor_node = new TreeNode(None, 0, 0, max_depth, actual_node)
+                successor_node =  TreeNode(None, 0, 0, max_depth, actual_node)
                 frontier.insert(successor_node)
     if solution:
         return createSolution(actual_node)

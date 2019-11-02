@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import sys
-
+import time
 sys.path.append('../src')
 
 from JsonManager import JsonManager as jManager
@@ -28,11 +28,9 @@ def testMove(cube):
         key = 0
         print("\nOption's movements: ")
         print(",".join([item for item in moves]))
-        try:
-            key = input("Selection:")
-        except ValueError:
-            print("Error, selection must be integer")
-            continue
+
+        key = input("Selection:")
+
         if key in moves:
             if list(key)[0] == 'b':
                 cube.b(int(list(key)[1]))
@@ -50,9 +48,10 @@ def testMove(cube):
         else:
             print("Not a valid selection")
 
-    jManager.jsonWriting('./output/', 'testing', cube)
+    jManager.jsonWriting('../output/', 'testing', cube)
     print("Results have been saved in testing.json")
 
+    time.sleep(1)
 
 if __name__ == '__main__':
     start()

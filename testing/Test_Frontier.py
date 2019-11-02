@@ -26,8 +26,6 @@ def main():
         fringe.remove()
 
     print("isEmpty: ", fringe.isEmpty())
-    print("isGoal: ", problem.isGoal(problem.initial))
-
 
 if __name__ == '__main__':
     main()
