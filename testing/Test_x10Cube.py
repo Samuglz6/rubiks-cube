@@ -91,6 +91,5 @@ def main():
     print("Obtained:" + state.md5)
     print("Expected:" + state2.md5)
 
-
 if __name__ == '__main__':
     main()
