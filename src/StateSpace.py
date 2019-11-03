@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+from JsonManager import JsonManager as jManager
 
-def StateSpace():
+class StateSpace:
     def __init__(self, json):
-        print(json)
+        self.path = json
+        self.json = jManager.jsonReading(self.path)
 
-    def successors(state, x):
-        acc = 0
-        newState = 0
-        costAct = 0
-
-        if state == x:
+    def successors(state, depth, x):
+        nodes = []
+        if depth == x:
             return []
         else:
+            for move in state.cube.validMovements:
+                newState = (state.cube.clone)
+                acc = move
+                costAct = 1
+                print(acc, newState, costAct)
             return nodes
-        print(acc, newState, costAct)

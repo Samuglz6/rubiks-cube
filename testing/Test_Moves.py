@@ -6,11 +6,13 @@ sys.path.append('../src')
 
 from JsonManager import JsonManager as jManager
 from Cube import Cube
-
+from State import State
 
 def start():
     cube = Cube(jManager.jsonReading("../json/x10cube.json"))
-    print(cube.md5)
+    state = State(cube)
+    print(state.md5)
+    
     try:
         while 1:
             testMove(cube)

@@ -8,8 +8,8 @@ from State import State
 
 class Problem():
     def __init__(self, json):
-        self.initial = State(Cube(json))
-        self.stateSpace = StateSpace()
+        self.stateSpace = StateSpace(json)
+        self.initial = State(Cube(self.stateSpace.json))
 
     def isGoal(self, state):
         goal = False
@@ -22,5 +22,4 @@ class Problem():
                     goal = True
                 else:
                     return False
-
         return goal

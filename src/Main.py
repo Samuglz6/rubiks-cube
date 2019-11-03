@@ -4,9 +4,8 @@
 from JsonManager import JsonManager as jManager
 from Problem import Problem
 
-
 def main():
-    json = jManager.jsonReading("../json/x4cube.json")
+    json = "../json/x4cube.json"
     problem =  Problem(json)
 
     print(problem.isGoal(problem.initial))
