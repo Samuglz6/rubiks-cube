@@ -45,11 +45,11 @@ class Cube:
 
         for x in range(self.size):
             bubble = self.faces["LEFT"][num][x]
-            self.faces["LEFT"][num][x] = self.faces["DOWN"][num][x]
-            self.faces["DOWN"][num][x] = self.faces["RIGHT"][num][x]
-            self.faces["RIGHT"][num][x] = self.faces["UP"][num][x]
-            self.faces["UP"][num][x] = bubble
-
+            self.faces["LEFT"][num][x] = self.faces["UP"][num][x]
+            self.faces["UP"][num][x] = self.faces["RIGHT"][num][x]
+            self.faces["RIGHT"][num][x] = self.faces["DOWN"][num][x]
+            self.faces["DOWN"][num][x] = bubble
+            
     def L(self, num):
         if num == 0:
             self.faces["LEFT"] = np.rot90(self.faces["LEFT"], -1).tolist()
