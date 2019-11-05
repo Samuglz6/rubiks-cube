@@ -22,7 +22,7 @@ def main():
     print("Expected:" + state2.md5)
     print("\n")
 
-    cube2 = Cube(jManager.jsonReading("../json/moves_x10/x10cube_D1.json"))
+    cube2 = Cube(jManager.jsonReading("../json/moves_x10/x10cube_D1_.json"))
     state2 = State(cube2)
 
     print("Move D1:")
