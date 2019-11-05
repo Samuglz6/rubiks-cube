@@ -20,7 +20,6 @@ class Cube:
         for move in moves:
             for number in range(self.size):
                 possible.append(move+str(number))
-
         return possible
 
     def b(self, num):

@@ -25,9 +25,10 @@ class Frontier:
             print("Not a valid node.")
 
     def remove(self):
+        node = self.frontier[0]
         del self.frontier[0]
         #return heapq.heappop(self.frontier)
-
+        return node
 
     def isEmpty(self):
         return not self.frontier

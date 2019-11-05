@@ -2,20 +2,22 @@
 # -*- coding: utf-8 -*-
 
 from JsonManager import JsonManager as jManager
+from TreeNode import TreeNode
+from State import State
 
 class StateSpace:
     def __init__(self, json):
         self.path = json
         self.json = jManager.jsonReading(self.path)
 
-    def successors(state, depth, x):
+    def successors(self, state, depth, x):
         nodes = []
         if depth == x:
             return []
         else:
-            for move in state.cube.validMovements:
-                newState = (state.cube.clone)
+            for move in state.current.validMovements():
+                newState = State(state.current.clone())
                 acc = move
                 costAct = 1
-                print(acc, newState, costAct)
+                nodes.append((acc, newState, costAct))
             return nodes
