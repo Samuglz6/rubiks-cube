@@ -8,7 +8,6 @@ sys.path.append('../src')
 from TreeNode import TreeNode
 from Frontier import Frontier
 from Problem import Problem
-from JsonManager import JsonManager as jManager
 
 
 def main():
