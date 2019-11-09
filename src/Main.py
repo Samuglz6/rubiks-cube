@@ -8,7 +8,7 @@ from TreeNode import TreeNode
 from pprint import pprint
 
 def main():
-    json = "../json/x4cube.json"
+    json = "../json/x3cube.json"
     problem =  Problem(json)
 
     search(problem, 0, 10, 1)
@@ -28,7 +28,6 @@ def bounded_search(problem, strategy, max_depth):
             successors_list = problem.stateSpace.successors(actual_node.state, actual_node.d,max_depth)
             for (action, state, cost) in successors_list:
                 node = TreeNode(state, strategy, actual_node, cost, action)
-                print("nuevo: ",node)
                 frontier.insert(node)
     if solution:
         return createSolution(actual_node)

@@ -15,7 +15,7 @@ class TreeNode:
             self.pathCost = cost
             self.d = depth
         self.action = action
-        self.f = random.random()*1000 #self.selection(strategy)
+        self.f = self.selection(strategy)
 
     def selection(self, strategy):
         switch = {0: self.d , 1: -(self.d), 2: self.pathCost}
