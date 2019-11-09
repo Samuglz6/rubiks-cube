@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import bisect as bisect
-#import queue as Q
-#import heapq
 from TreeNode import TreeNode
+from sortedcontainers import SortedKeyList
 
 
 class Frontier:
@@ -12,23 +11,16 @@ class Frontier:
         self.frontier = self.create()
 
     def create(self):
-        #frontier = []
-        #heapq.heapify(frontier)
-        #return frontier
-        return []
+        return SortedKeyList(key=TreeNode.getF)
 
     def insert(self, node):
         if isinstance(node, TreeNode):
-            bisect.insort(self.frontier, (node.f, node))
-            #heapq.heappush(self.frontier, (node.f, node))
+            self.frontier.add(node)
         else:
             print("Not a valid node.")
 
     def remove(self):
-        node = self.frontier[0]
-        del self.frontier[0]
-        #return heapq.heappop(self.frontier)
-        return node
+        return self.frontier.pop(0)
 
     def isEmpty(self):
         return not self.frontier

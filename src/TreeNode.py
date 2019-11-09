@@ -17,7 +17,9 @@ class TreeNode:
         self.action = action
         self.f = self.selection(strategy)
 
-
     def selection(self, strategy):
         switch = {0: self.d , 1: -(self.d), 2: self.pathCost}
         return switch[strategy]
+
+    def getF(self):
+        return self.f

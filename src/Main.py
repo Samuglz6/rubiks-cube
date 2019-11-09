@@ -21,8 +21,7 @@ def bounded_search(problem, strategy, max_depth):
     frontier.insert(init_node)
     solution = False
     while (not solution) and (not frontier.isEmpty()):
-        actual_node = frontier.remove()[1]
-        #print(actual_node)
+        actual_node = frontier.remove()
         if(problem.isGoal(actual_node.state)):
             solution = True
         else:
