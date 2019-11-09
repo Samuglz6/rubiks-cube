@@ -12,20 +12,23 @@ from JsonManager import JsonManager as jManager
 
 
 def main():
-    problem = Problem(jManager.jsonReading("../json/x4cube.json"))
+    problem = Problem("../json/x4cube.json")
     fringe = Frontier()
 
+    print("Inserting...\n")
     for i in range(10):
-        node = TreeNode(problem.initial, 0, 0, 0)
+        node = TreeNode(problem.initial, 2, None, 1)
         fringe.insert(node)
 
+    print("Elements:")
     for element in fringe.frontier:
-        print(element[0])
+        print((element.getF(), element))
 
+    print("\nRemoving...")
     for i in range(10):
         fringe.remove()
 
-    print("isEmpty: ", fringe.isEmpty())
+    print("\nisEmpty: ", fringe.isEmpty())
 
 if __name__ == '__main__':
     main()
