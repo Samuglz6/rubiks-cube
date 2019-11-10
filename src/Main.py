@@ -10,18 +10,19 @@ from pprint import pprint
 
 def main():
 
-    #strategy, pruning, json, max_depth, increment = askData()
-    #problem =  Problem(json)
-    automatic()
+    strategy, pruning, json, max_depth, increment = askData()
+    problem =  Problem(json)
 
-    #print("Finding solution...")
-    #search(problem, strategy, max_depth, increment)
-    #print("Program finished...")
+    #automatic()
+
+    print("Finding solution...")
+    search(problem, strategy, max_depth, increment, pruning)
+    print("Program finished...")
 
 
 def automatic():
     problem = Problem("../json/x2cube.json")
-    search(problem, 0, 99, 1, 0)
+    search(problem, 0, 99, 1, 1)
 
 def askData():
     json = jManager.jsonSelection()
@@ -76,6 +77,7 @@ def bounded_search(problem, strategy, max_depth, pruning):
     solution = False
     while (not solution) and (not frontier.isEmpty()):
         actual_node = frontier.remove()
+        print(actual_node.state.md5)
         if(problem.isGoal(actual_node.state)):
             solution = True
         else:
@@ -85,7 +87,15 @@ def bounded_search(problem, strategy, max_depth, pruning):
                 node = TreeNode(state, strategy, actual_node, cost, action)
                 node_list.append(node)
             if pruning == 1:
-                print("No need of implementing it for Task 3")
+                for node in node_list:
+                    if node.state.md5 not in problem.visitedList:
+                        frontier.insert(node)
+                        problem.visitedList[node.state.md5] = node.f
+                        print("nuevo visitado")
+                    elif node.f < problem.visitedList[node.state.md5]:
+                        frontier.insert(node)
+                        problem.visitedList[node.state.md5] = node.f
+                        print("mejorado")
             else:
                 for node in node_list:
                     frontier.insert(node)
