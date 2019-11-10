@@ -6,15 +6,18 @@ import json
 
 class JsonManager:
 
-    def jsonReading(file):
+    def jsonReading(file=None):
+        data = None
         if file is not None:
-            with open(file, 'r') as output:
-                data = json.load(output)
-                output.close()
+            try:
+                with open(file, 'r') as output:
+                    data = json.load(output)
+                    output.close()
+            except:
+                print("READING ERROR. The introduced file doesn't exist.")
         else:
-            listed_files = []
-
             while 1:
+                listed_files = []
                 print("Select the json file:")
                 for node in os.listdir('../json'):
                     if os.path.splitext(node)[1] == ".json":
@@ -54,14 +57,15 @@ class JsonManager:
                     print(i, file1[i], file2[i])
 
     def jsonChecking(data):
-        size = len(list(data.values())[0])
-        if len(list(data.keys())) != 6:
-            data = None
-        else:
-            for values in data.values():
-                if len(values) != size:
-                    data = None
-                for element in values:
-                    if len(element) != size:
+        if data is not None:
+            size = len(list(data.values())[0])
+            if len(list(data.keys())) != 6:
+                data = None
+            else:
+                for values in data.values():
+                    if len(values) != size:
                         data = None
+                    for element in values:
+                        if len(element) != size:
+                            data = None
         return data

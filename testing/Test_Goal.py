@@ -9,7 +9,7 @@ from Problem import Problem
 
 
 def main():
-    problem = Problem("../json/x4cube_solution.json")
+    problem = Problem("../json/solved/x4cube_solution.json")
     print("x4cube_solution.json\nisGoal: ", problem.isGoal(problem.initial))
 
     problem = Problem("../json/x4cube.json")

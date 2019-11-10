@@ -18,7 +18,7 @@ class TreeNode:
         self.f = self.selection(strategy)
 
     def selection(self, strategy):
-        switch = {0: self.d , 1: -(self.d), 2: self.pathCost}
+        switch = {0: self.d , 1: -(self.d), 2: '', 3: '', 4: self.pathCost}
         return switch[strategy]
 
     def getF(self):
