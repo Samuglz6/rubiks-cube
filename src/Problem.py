@@ -10,6 +10,7 @@ class Problem():
     def __init__(self, json):
         self.stateSpace = StateSpace(json)
         self.initial = State(Cube(self.stateSpace.json))
+        self.visitedList = {}
 
     def isGoal(self, state):
         goal = False

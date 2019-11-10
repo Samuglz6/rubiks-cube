@@ -86,8 +86,8 @@ class Cube:
             self.faces["FRONT"][num][x] = self.faces["RIGHT"][(self.size - 1) - x][num]
             self.faces["RIGHT"][(self.size - 1) - x][num] = self.faces["BACK"][(self.size - 1) - num][
                 (self.size - 1) - x]
-            self.faces["BACK"][(self.size - 1) - num][(self.size - 1) - x] = self.faces["LEFT"][(self.size - 1) - num][
-                (self.size - 1) - x]
+            self.faces["BACK"][(self.size - 1) - num][(self.size - 1) - x] = self.faces["LEFT"][(self.size - 1) - x][
+                (self.size - 1) - num]
             self.faces["LEFT"][x][(self.size - 1) - num] = bubble
 
     def d(self, num):

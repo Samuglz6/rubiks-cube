@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import sys
-import time
+import sys, time
+from pprint import pprint
 sys.path.append('../src')
 
 from JsonManager import JsonManager as jManager
@@ -9,16 +9,42 @@ from Cube import Cube
 from State import State
 
 def start():
-    cube = Cube(jManager.jsonReading("../json/x10cube.json"))
-    state = State(cube)
-    print(state.md5)
-    
     try:
         while 1:
-            testMove(cube)
+            testConsecutiveMoves()
     except KeyboardInterrupt:
         print("\nTest has been interrupted")
 
+def testConsecutiveMoves():
+    cube = Cube(jManager.jsonReading("../json/x2cube.json"))
+    state = State(cube)
+    print(state.md5)
+
+    letters = ["B", "b", "D", "d", "L", "l"]
+    moves = []
+    for element in letters:
+        for number in range(cube.size):
+            moves.append(element + str(number))
+    while True:
+        key = 0
+        print("\nOption's movements: ")
+        print(",".join([item for item in moves]))
+
+        key = input("Selection:")
+        try:
+            method = getattr(cube, key[0])
+            method(int(key[1]))
+            state = State(cube)
+            print(state.md5)
+        except:
+            print("ERROR. Not valid movement")
+
+        jManager.jsonWriting('../output/', 'testing', state.current)
+        pprint(state.current.faces)
+        print("Results have been saved in testing.json")
+
+
+        time.sleep(1)
 
 def testMove(cube):
     letters = ["B", "b", "D", "d", "L", "l"]

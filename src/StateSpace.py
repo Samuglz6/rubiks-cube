@@ -16,7 +16,9 @@ class StateSpace:
             return []
         else:
             for move in state.current.validMovements():
-                newState = State(state.current.clone())
+                method = getattr(state.current.clone(), move[0])
+                method(int(move[1]))
+                newState = State(state.current)
                 acc = move
                 costAct = 1
                 nodes.append((acc, newState, costAct))
