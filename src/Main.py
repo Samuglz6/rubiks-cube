@@ -77,7 +77,7 @@ def bounded_search(problem, strategy, max_depth, pruning):
     solution = False
     while (not solution) and (not frontier.isEmpty()):
         actual_node = frontier.remove()
-        print(actual_node.state.md5)
+        #print(actual_node.state.md5)
         if(problem.isGoal(actual_node.state)):
             solution = True
         else:
