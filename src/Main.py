@@ -12,14 +12,15 @@ from pprint import pprint
 def main():
 
     strategy, pruning, json, max_depth, increment = askData()
-    #problem =  Problem(json)
-    #search(problem, strategy, max_depth, increment)
-    print(strategy, '\n', pruning, '\n', json, '\n', max_depth, '\n', increment)
+    problem =  Problem(json)
+
+    print("Finding solution...")
+    search(problem, strategy, max_depth, increment)
     print("Program finished...")
 
 
 def askData():
-    json = jManager.jsonReading()
+    json = jManager.jsonSelection()
 
     switch = {0: ['Breath First Search', 'BFS'], 1: ['Depth First Search', 'DFS'], 2:
     ['Depth Limited Search', 'DLS'], 3: ['Iterative Deepening Search', 'IDS'],
@@ -38,13 +39,8 @@ def askData():
                 print("ERROR. The number introduced is not valid.")
             else: break
         else:
-            list = []
-            for element in switch.values():
-                list.append(element[0])
-                list.append(element[1])
-            if strategy not in list:
-                    print("ERROR. The introduced strategy is not valid")
-            else: break
+            print("ERROR. The introduced strategy is not valid")
+
 
     while 1:
         pruning = input("Do you want to pruning? (y/n)\n")
