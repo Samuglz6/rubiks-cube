@@ -4,6 +4,7 @@
 from JsonManager import JsonManager as jManager
 from TreeNode import TreeNode
 from State import State
+from pprint import pprint
 
 class StateSpace:
     def __init__(self, json):
@@ -17,8 +18,13 @@ class StateSpace:
         else:
             for move in state.current.validMovements():
                 method = getattr(state.current.clone(), move[0])
+                print(method)
+                print("method: ",state.md5)
                 method(int(move[1]))
                 newState = State(state.current)
+                print("new: ",newState.md5)
+                pprint(newState.current.faces)
+                print("movement: ", move, "\n")
                 acc = move
                 costAct = 1
                 nodes.append((acc, newState, costAct))

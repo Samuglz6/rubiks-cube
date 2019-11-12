@@ -10,19 +10,19 @@ from pprint import pprint
 
 def main():
 
-    strategy, pruning, json, max_depth, increment = askData()
-    problem =  Problem(json)
+    #strategy, pruning, json, max_depth, increment = askData()
+    #problem =  Problem(json)
 
-    #automatic()
+    automatic()
 
-    print("Finding solution...")
-    search(problem, strategy, max_depth, increment, pruning)
-    print("Program finished...")
+    #print("Finding solution...")
+    #search(problem, strategy, max_depth, increment, pruning)
+    #print("Program finished...")
 
 
 def automatic():
     problem = Problem("../json/x2cube.json")
-    search(problem, 0, 99, 1, 1)
+    search(problem, 0, 10, 1, 0)
 
 def askData():
     json = jManager.jsonSelection()
@@ -77,7 +77,7 @@ def bounded_search(problem, strategy, max_depth, pruning):
     solution = False
     while (not solution) and (not frontier.isEmpty()):
         actual_node = frontier.remove()
-        #print(actual_node.state.md5)
+        print(actual_node.d)
         if(problem.isGoal(actual_node.state)):
             solution = True
         else:

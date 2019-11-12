@@ -3,6 +3,7 @@
 
 import numpy as np
 import copy
+from pprint import pprint
 
 
 class Cube:
@@ -61,6 +62,9 @@ class Cube:
             self.faces["UP"][(self.size - 1) - x][(self.size - 1) - num] = self.faces["BACK"][x][num]
             self.faces["BACK"][x][num] = self.faces["DOWN"][x][num]
             self.faces["DOWN"][x][num] = bubble
+
+            print("x = ", x)
+            pprint(self.faces)
 
     def l(self, num):
         if num == 0:
