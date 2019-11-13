@@ -8,9 +8,9 @@ class TreeNode:
     def __init__(self, state, strategy, parent=None, cost=0, action=None, depth=0):
         self.parent = parent
         self.state = state
-        if parent is not None:
-            self.pathCost = parent.pathCost+cost
-            self.d = parent.d+1
+        if self.parent is not None:
+            self.pathCost = self.parent.pathCost+cost
+            self.d = self.parent.d+1
         else:
             self.pathCost = cost
             self.d = depth

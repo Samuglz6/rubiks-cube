@@ -17,12 +17,12 @@ def main():
 
     #print("Finding solution...")
     #search(problem, strategy, max_depth, increment, pruning)
-    #print("Program finished...")
+    print("Program finished...")
 
 
 def automatic():
     problem = Problem("../json/x2cube.json")
-    search(problem, 0, 10, 1, 0)
+    search(problem, 0, 10, 1, 1)
 
 def askData():
     json = jManager.jsonSelection()
@@ -70,14 +70,14 @@ def askData():
     return strategy, pruning, json, max_depth, increment
 
 
-def bounded_search(problem, strategy, max_depth, pruning):
+def bounded_search(problem, strategy, actual_depth, max_depth, pruning):
     frontier =  Frontier()
     init_node =  TreeNode(problem.initial, strategy)
     frontier.insert(init_node)
     solution = False
     while (not solution) and (not frontier.isEmpty()):
         actual_node = frontier.remove()
-        print(actual_node.d)
+
         if(problem.isGoal(actual_node.state)):
             solution = True
         else:
@@ -91,14 +91,13 @@ def bounded_search(problem, strategy, max_depth, pruning):
                     if node.state.md5 not in problem.visitedList:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
-                        print("nuevo visitado")
                     elif node.f < problem.visitedList[node.state.md5]:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
-                        print("mejorado")
             else:
                 for node in node_list:
                     frontier.insert(node)
+
 
     if solution:
         return actual_node
@@ -109,8 +108,9 @@ def search(problem, strategy, max_depth, increment, pruning):
     actual_depth = increment
     solution = None
     while (not solution) and (actual_depth <= max_depth):
-        solution = bounded_search(problem, strategy, actual_depth, pruning)
+        solution = bounded_search(problem, strategy, actual_depth, max_depth, pruning)
         depth = actual_depth + increment
+        break
     return solution
 
 if __name__ == '__main__':

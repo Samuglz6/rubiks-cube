@@ -17,14 +17,10 @@ class StateSpace:
             return []
         else:
             for move in state.current.validMovements():
-                method = getattr(state.current.clone(), move[0])
-                print(method)
-                print("method: ",state.md5)
+                aux = State(state.current.clone())
+                method = getattr(aux.current, move[0])
                 method(int(move[1]))
-                newState = State(state.current)
-                print("new: ",newState.md5)
-                pprint(newState.current.faces)
-                print("movement: ", move, "\n")
+                newState = State(aux.current)
                 acc = move
                 costAct = 1
                 nodes.append((acc, newState, costAct))
