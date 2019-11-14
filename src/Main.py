@@ -10,19 +10,35 @@ from pprint import pprint
 
 def main():
 
-    #strategy, pruning, json, max_depth, increment = askData()
-    #problem =  Problem(json)
+    strategy, pruning, json, max_depth, increment = askData()
+    problem =  Problem(json)
 
-    automatic()
+    solution = []
 
-    #print("Finding solution...")
-    #search(problem, strategy, max_depth, increment, pruning)
+    print("Finding solution...")
+    start = time.time()
+    node = search(problem, strategy, max_depth, increment, pruning)
+    print("searching time: %.11f" % (time.time() - start))
+
+    print("Generating solution...")
+    generateSol(solution, node)
+
+    if node is not None:
+        print("A solution has been found.")
+        print("The solution has been saved in the folder output: solution.txt")
+        print("You can also check the result of the faces in the same folder: solution.json ")
+    else:
+        print("No solution found.")
+    jManager.jsonWriting('../output',solution.json,node.state.current.faces)
+    print('\n'.join([element for element in solution]))
     print("Program finished...")
 
 
 def automatic():
     problem = Problem("../json/x2cube.json")
-    search(problem, 0, 10, 1, 1)
+    solution = []
+    generateSol(solution, search(problem, 0, 10, 1, 1))
+    print(solution)
 
 def askData():
     json = jManager.jsonSelection()
@@ -110,8 +126,16 @@ def search(problem, strategy, max_depth, increment, pruning):
     while (not solution) and (actual_depth <= max_depth):
         solution = bounded_search(problem, strategy, actual_depth, max_depth, pruning)
         depth = actual_depth + increment
-        break
     return solution
+
+def generateSol(solution, node):
+    if(node.parent is None):
+        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f))
+    else:
+        generateSol(solution, node.parent)
+        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f))
+
+
 
 if __name__ == '__main__':
 
