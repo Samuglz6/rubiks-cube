@@ -21,7 +21,7 @@ def main():
     print("Searching time: %.11f s" % (time.time() - start))
 
     print("\nGenerating the solution...")
-    generateSol(solution, node)   
+    generateSol(solution, node)
     writeSolution(solution, node)
 
 
@@ -45,7 +45,7 @@ def askData():
                 print(element,' - ',switch.get(element)[0], '(',switch.get(element)[1],')')
             else:
                 print(element, ' - ', switch.get(element))
-                
+
         strategy = input("Selection: ")
 
         if strategy.isdigit():
@@ -80,10 +80,11 @@ def askData():
     return strategy, pruning, json, max_depth, increment
 
 
-def bounded_search(problem, strategy, actual_depth, max_depth, pruning):
+def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_nodes):
     frontier =  Frontier()
-    init_node =  TreeNode(problem.initial, strategy)
+    init_node =  TreeNode(total_nodes, problem.initial, strategy)
     frontier.insert(init_node)
+    total_nodes += 1
     solution = False
     while (not solution) and (not frontier.isEmpty()):
         actual_node = frontier.remove()
@@ -94,19 +95,22 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning):
             successors_list = problem.stateSpace.successors(actual_node.state, actual_node.d, max_depth)
             node_list = []
             for (action, state, cost) in successors_list:
-                node = TreeNode(state, strategy, actual_node, cost, action)
+                node = TreeNode(total_nodes, state, strategy, actual_node, cost, action)
                 node_list.append(node)
             if pruning == 1:
                 for node in node_list:
                     if node.state.md5 not in problem.visitedList:
                         frontier.insert(node)
+                        total_nodes += 1
                         problem.visitedList[node.state.md5] = node.f
                     elif node.f < problem.visitedList[node.state.md5]:
                         frontier.insert(node)
+                        total_nodes += 1
                         problem.visitedList[node.state.md5] = node.f
             else:
                 for node in node_list:
                     frontier.insert(node)
+                    total_nodes += 1
 
 
     if solution:
@@ -116,18 +120,19 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning):
 
 def search(problem, strategy, max_depth, increment, pruning):
     actual_depth = increment
+    total_nodes = 0
     solution = None
     while (not solution) and (actual_depth <= max_depth):
-        solution = bounded_search(problem, strategy, actual_depth, max_depth, pruning)
+        solution = bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_nodes)
         depth = actual_depth + increment
     return solution
 
 def generateSol(solution, node):
     if(node.parent is None):
-        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
+        solution.append("["+str(node.id)+"](["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
     else:
         generateSol(solution, node.parent)
-        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
+        solution.append("["+str(node.id)+"](["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
 
 def writeSolution(solution, node):
     if node is not None:
@@ -136,12 +141,12 @@ def writeSolution(solution, node):
         print("You can also check the result of the faces: rubiks-cube/output/solution.json ")
     else:
         print("No solution found.")
-    
+
     jManager.jsonWriting('../output/','solution', node.state.current)
-    
+
     with open("../output/solution.txt", "w+") as text_file:
         text_file.write('\n'.join([element for element in solution]))
-    
+
 
 if __name__ == '__main__':
     try:
