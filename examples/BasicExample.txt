@@ -1,0 +1,64 @@
+﻿
+Problema:
+{
+"BACK": [[1,1],[0,0]],
+"DOWN": [[3,2],[4,5]],
+"FRONT": [[0,1],[0,1]],
+"LEFT": [[4,5],[3,2]],
+"RIGHT": [[4,5],[3,2]],
+"UP": [[3,2],[4,5]]
+}
+
+Soluciones: (Max solution of depth 6)
+
+Representation of the tree nodes:
+[ID_Node]([action] STATE_ID,cost,depth,node value (f))
+
+
+Breadth (BFS)
+=================
+
+[0]([None]2d933fbd33229a28f6133b83b1b35130,c=0,d=0,f=0.00)
+
+[3]([b0]3738b536b078d9c8038988d9a8571973,c=1,d=1,f=1.00)
+
+[41]([D0]65ea20ab50a2eaef3db6ea85fb7e5a5a,c=2,d=2,f=2.00)
+
+[440]([d1]8bea69c555ff9ddd8f9dd3d7c7c90f0b,c=3,d=3,f=3.00)
+
+[4057]([B0]f90464bdc55bd5e8111dc2b52eaea794,c=4,d=4,f=4.00)
+
+[37849]([B0]91b788d5565df3def0d775110527845c,c=5,d=5,f=5.00)
+
+
+
+Depth (DFS)
+===================
+
+[0]([None]2d933fbd33229a28f6133b83b1b35130,c=0,d=0,f=1.00)
+
+[3]([b0]3738b536b078d9c8038988d9a8571973,c=1,d=1,f=0.50)
+
+[229853]([D0]65ea20ab50a2eaef3db6ea85fb7e5a5a,c=2,d=2,f=0.33)
+
+[239336]([d1]8bea69c555ff9ddd8f9dd3d7c7c90f0b,c=3,d=3,f=0.25)
+
+[246529]([B0]f90464bdc55bd5e8111dc2b52eaea794,c=4,d=4,f=0.20)
+
+[246541]([B0]91b788d5565df3def0d775110527845c,c=5,d=5,f=0.17)
+
+
+
+Uniform (UCS)
+========================
+
+[0]([None]2d933fbd33229a28f6133b83b1b35130,c=0,d=0,f=0.00)
+
+[3]([b0]3738b536b078d9c8038988d9a8571973,c=1,d=1,f=1.00)
+
+[41]([D0]65ea20ab50a2eaef3db6ea85fb7e5a5a,c=2,d=2,f=2.00)
+
+[440]([d1]8bea69c555ff9ddd8f9dd3d7c7c90f0b,c=3,d=3,f=3.00)
+
+[4057]([B0]f90464bdc55bd5e8111dc2b52eaea794,c=4,d=4,f=4.00)
+[37849]([B0]91b788d5565df3def0d775110527845c,c=5,d=5,f=5.00)
