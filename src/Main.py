@@ -29,7 +29,7 @@ def main():
         print("You can also check the result of the faces in the same folder: solution.json ")
     else:
         print("No solution found.")
-    jManager.jsonWriting('../output',solution.json,node.state.current.faces)
+    jManager.jsonWriting('../output/','solution', node.state.current)
     print('\n'.join([element for element in solution]))
     print("Program finished...")
 
@@ -130,10 +130,10 @@ def search(problem, strategy, max_depth, increment, pruning):
 
 def generateSol(solution, node):
     if(node.parent is None):
-        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f))
+        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
     else:
         generateSol(solution, node.parent)
-        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f))
+        solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
 
 
 
