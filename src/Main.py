@@ -15,23 +15,14 @@ def main():
 
     solution = []
 
-    print("Finding solution...")
+    print("Searching for the solution...")
     start = time.time()
     node = search(problem, strategy, max_depth, increment, pruning)
-    print("searching time: %.11f" % (time.time() - start))
+    print("Searching time: %.11f s" % (time.time() - start))
 
-    print("Generating solution...")
-    generateSol(solution, node)
-
-    if node is not None:
-        print("A solution has been found.")
-        print("The solution has been saved in the folder output: solution.txt")
-        print("You can also check the result of the faces in the same folder: solution.json ")
-    else:
-        print("No solution found.")
-    jManager.jsonWriting('../output/','solution', node.state.current)
-    print('\n'.join([element for element in solution]))
-    print("Program finished...")
+    print("\nGenerating the solution...")
+    generateSol(solution, node)   
+    writeSolution(solution, node)
 
 
 def automatic():
@@ -45,13 +36,16 @@ def askData():
 
     switch = {0: ['Breath First Search', 'BFS'], 1: ['Depth First Search', 'DFS'], 2:
     ['Depth Limited Search', 'DLS'], 3: ['Iterative Deepening Search', 'IDS'],
-    4: ['Uniform Cost Search', 'UCS']}
+    4: ['Uniform Cost Search', 'UCS'], 5: 'A*', 6: 'Greedy'}
 
     while 1:
         print("\nSelect now the searching strategy:")
         for element in switch.keys():
-            print(element,' - ',switch.get(element)[0], '(',switch.get(element)[1],')')
-
+            if(element < 5):
+                print(element,' - ',switch.get(element)[0], '(',switch.get(element)[1],')')
+            else:
+                print(element, ' - ', switch.get(element))
+                
         strategy = input("Selection: ")
 
         if strategy.isdigit():
@@ -77,7 +71,7 @@ def askData():
     if strategy == 2 or strategy in switch.get(2):
         max_depth = int(input("Choose the maximum depth: "))
     else:
-        max_depth = 999
+        max_depth = 20
 
     if strategy == 3 or strategy in switch.get(3):
         increment = input("Specify the increment: ")
@@ -135,8 +129,24 @@ def generateSol(solution, node):
         generateSol(solution, node.parent)
         solution.append("(["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
 
-
+def writeSolution(solution, node):
+    if node is not None:
+        print("A solution has been found.")
+        print("The solution has been saved: rubiks-cube/output/solution.txt")
+        print("You can also check the result of the faces: rubiks-cube/output/solution.json ")
+    else:
+        print("No solution found.")
+    
+    jManager.jsonWriting('../output/','solution', node.state.current)
+    
+    with open("../output/solution.txt", "w+") as text_file:
+        text_file.write('\n'.join([element for element in solution]))
+    
 
 if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("The program has been interrupted.")
 
-    main()
+    print("Program has finished.")
