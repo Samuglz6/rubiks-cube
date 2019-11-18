@@ -26,6 +26,18 @@ class TreeNode:
         return self.f
 
     def calculateHeuristic(self):
-        heuristic = 0
+        entropy = {"BACK": 0,"DOWN": 0,"FRONT": 0,"LEFT": 0,"RIGHT": 0,"UP": 0}
 
-        return heuristic
+        counter = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+
+        for face, value in state.current.faces.items():
+            for element in value:
+                entropy = 0
+
+
+
+            for c in range(6):
+                if counter[c] > 0.0:
+                    entropy[face] = entropy[face] + counter[c]/(N*N) * math.log(counter[c]/(N*N),6)
+
+        return entropy
