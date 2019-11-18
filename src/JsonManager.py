@@ -6,10 +6,12 @@ import json
 
 class JsonManager:
     def jsonSelection():
+        cwd = JsonManager.currentDirectory() + 'json/'
+        print(cwd)
         while 1:
             listed_files = []
             print("Select the json file:")
-            for node in os.listdir('../json'):
+            for node in os.listdir(cwd):
                 if os.path.splitext(node)[1] == ".json":
                     listed_files.append(os.path.splitext(node)[0])
 
@@ -21,7 +23,7 @@ class JsonManager:
                 print("ERROR. Selected file is not valid.\n")
             else:
                 break
-        path = '../json/' + selected + '.json'
+        path = cwd + selected + '.json'
 
         return path
 
@@ -37,7 +39,8 @@ class JsonManager:
 
         return JsonManager.jsonChecking(data)
 
-    def jsonWriting(path, name, cube):
+    def jsonWriting(name, cube):
+        path = JsonManager.currentDirectory() + 'output/'
         with open(path + name + '.json', 'w+') as file:
             file.write(json.dumps(cube.faces))
             file.close()
@@ -64,3 +67,11 @@ class JsonManager:
                         if len(element) != size:
                             data = None
         return data
+
+    def currentDirectory():
+        cwd = os.getcwd().split('/')[-1]
+        if cwd == 'src': cwd = '../'
+        elif cwd == 'rubiks-cube': cwd = './'
+        else: cwd == None
+
+        return cwd

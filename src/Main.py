@@ -24,13 +24,6 @@ def main():
     generateSol(solution, node)
     writeSolution(solution, node)
 
-
-def automatic():
-    problem = Problem("../json/x2cube.json")
-    solution = []
-    generateSol(solution, search(problem, 0, 10, 1, 1))
-    print(solution)
-
 def askData():
     json = jManager.jsonSelection()
 
@@ -142,9 +135,9 @@ def writeSolution(solution, node):
     else:
         print("No solution found.")
 
-    jManager.jsonWriting('../output/','solution', node.state.current)
+    jManager.jsonWriting('solution', node.state.current)
 
-    with open("../output/solution.txt", "w+") as text_file:
+    with open(jManager.currentDirectory()+"output/solution.txt", "w+") as text_file:
         text_file.write('\n'.join([element for element in solution]))
 
 
