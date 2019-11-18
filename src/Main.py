@@ -64,7 +64,7 @@ def askData():
     if strategy == 2 or strategy in switch.get(2):
         max_depth = int(input("Choose the maximum depth: "))
     else:
-        max_depth = 20
+        max_depth = 6
 
     if strategy == 3 or strategy in switch.get(3):
         increment = input("Specify the increment: ")
@@ -104,8 +104,6 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_no
                 for node in node_list:
                     frontier.insert(node)
                     total_nodes += 1
-
-
     if solution:
         return actual_node
     else:
