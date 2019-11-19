@@ -16,7 +16,7 @@ def start():
         print("\nTest has been interrupted")
 
 def testConsecutiveMoves():
-    cube = Cube(jManager.jsonReading("../json/x2cube.json"))
+    cube = Cube(jManager.jsonReading("../json/x4cube.json"))
     state = State(cube)
     print(state.md5)
 
@@ -39,7 +39,7 @@ def testConsecutiveMoves():
         except:
             print("ERROR. Not valid movement")
 
-        jManager.jsonWriting('../output/', 'testing', state.current)
+        jManager.jsonWriting('/testing', state.current)
         pprint(state.current.faces)
         print("Results have been saved in testing.json")
 
@@ -76,7 +76,7 @@ def testMove(cube):
         else:
             print("Not a valid selection")
 
-    jManager.jsonWriting('../output/', 'testing', cube)
+    jManager.jsonWriting('/testing', cube)
     print("Results have been saved in testing.json")
 
     time.sleep(1)

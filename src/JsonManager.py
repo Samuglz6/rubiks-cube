@@ -72,6 +72,6 @@ class JsonManager:
         cwd = os.getcwd().split('/')[-1]
         if cwd == 'src': cwd = '../'
         elif cwd == 'rubiks-cube': cwd = './'
-        else: cwd == None
+        elif cwd == 'testing' : cwd = '../'
 
         return cwd

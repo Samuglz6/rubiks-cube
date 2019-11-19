@@ -30,7 +30,7 @@ class TreeNode:
 
         counter = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
 
-        for face, value in state.current.faces.items():
+        '''for face, value in state.current.faces.items():
             for element in value:
                 entropy = 0
 
@@ -38,6 +38,6 @@ class TreeNode:
 
             for c in range(6):
                 if counter[c] > 0.0:
-                    entropy[face] = entropy[face] + counter[c]/(N*N) * math.log(counter[c]/(N*N),6)
+                    entropy[face] = entropy[face] + counter[c]/(N*N) * math.log(counter[c]/(N*N),6)'''
 
-        return entropy
+        return 1
