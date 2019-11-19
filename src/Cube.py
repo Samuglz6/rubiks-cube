@@ -15,7 +15,7 @@ class Cube:
         return copy.deepcopy(self)
 
     def validMovements(self):
-        moves = ["b", "B", "d", "D", "l", "L"]
+        moves = ["B", "b", "D", "d", "L", "l"]
         possible = []
 
         for move in moves:

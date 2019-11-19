@@ -13,7 +13,7 @@ class StateSpace:
 
     def successors(self, state, depth, x):
         nodes = []
-        if depth == x:
+        if depth+1 == x:
             return []
         else:
             for move in state.current.validMovements():

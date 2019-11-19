@@ -77,7 +77,6 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_no
     frontier =  Frontier()
     init_node =  TreeNode(total_nodes, problem.initial, strategy)
     frontier.insert(init_node)
-    total_nodes += 1
     solution = False
     while (not solution) and (not frontier.isEmpty()):
         actual_node = frontier.remove()
@@ -88,22 +87,20 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_no
             successors_list = problem.stateSpace.successors(actual_node.state, actual_node.d, max_depth)
             node_list = []
             for (action, state, cost) in successors_list:
+                total_nodes += 1
                 node = TreeNode(total_nodes, state, strategy, actual_node, cost, action)
                 node_list.append(node)
             if pruning == 1:
                 for node in node_list:
                     if node.state.md5 not in problem.visitedList:
                         frontier.insert(node)
-                        total_nodes += 1
                         problem.visitedList[node.state.md5] = node.f
                     elif node.f < problem.visitedList[node.state.md5]:
                         frontier.insert(node)
-                        total_nodes += 1
                         problem.visitedList[node.state.md5] = node.f
             else:
                 for node in node_list:
                     frontier.insert(node)
-                    total_nodes += 1
     if solution:
         return actual_node
     else:
@@ -144,5 +141,4 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print("The program has been interrupted.")
-
     print("Program has finished.")

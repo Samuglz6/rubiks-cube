@@ -19,7 +19,7 @@ class TreeNode:
         self.f = self.selection(strategy)
 
     def selection(self, strategy):
-        switch = {0: self.d , 1: round(1/(self.d+1), 3), 2: '', 3: '', 4: self.pathCost, 5: self.pathCost+self.calculateHeuristic(), 6: self.calculateHeuristic()}
+        switch = {0: self.d , 1: round(1/(self.d+1), 2), 2: '', 3: '', 4: self.pathCost, 5: self.pathCost+self.calculateHeuristic(), 6: self.calculateHeuristic()}
         return switch[strategy]
 
     def getF(self):
