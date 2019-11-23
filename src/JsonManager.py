@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 import os
 import json
-
+from sys import platform
 
 class JsonManager:
     def jsonSelection():
         cwd = JsonManager.currentDirectory() + 'json/'
-        print(cwd)
+
         while 1:
             listed_files = []
             print("Select the json file:")
@@ -69,7 +69,10 @@ class JsonManager:
         return data
 
     def currentDirectory():
-        cwd = os.getcwd().split('/')[-1]
+        if platform == 'win32':
+            cwd = os.getcwd().split('\\')[-1]
+        else:
+            cwd = os.getcwd().split('/')[-1]
         if cwd == 'src': cwd = '../'
         elif cwd == 'rubiks-cube': cwd = './'
         elif cwd == 'testing' : cwd = '../'
