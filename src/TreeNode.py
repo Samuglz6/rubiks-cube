@@ -3,7 +3,6 @@
 
 import random
 import math
-import pprint
 
 class TreeNode:
     def __init__(self, id, state, strategy, parent=None, cost=0, action=None, depth=0):
@@ -20,20 +19,8 @@ class TreeNode:
         self.f = self.selection(strategy)
 
     def selection(self, strategy):
-        if strategy == 0:
-            return self.d
-        elif strategy == 1:
-            return round(1/(self.d+1), 2)
-        elif strategy == 2:
-            return ''
-        elif strategy == 3:
-            return ''
-        elif strategy == 4:
-            return self.pathCost
-        elif strategy == 5:
-            return self.pathCost+self.calculateHeuristic()
-        elif strategy == 6:
-            return self.calculateHeuristic()
+          switch = {0: self.d , 1: round(1/(self.d+1), 2), 2: '', 3: '', 4: self.pathCost, 5: self.pathCost+self.calculateHeuristic(), 6: self.calculateHeuristic()}
+          return switch[strategy]
 
     def getF(self):
         return self.f
