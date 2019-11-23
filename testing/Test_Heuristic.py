@@ -9,8 +9,9 @@ from TreeNode import TreeNode
 from Problem import Problem
 
 def main():
-    problem = Problem("../json/x2cube.json")
-    node = TreeNode(1, problem.initial, 6)
+    problem = Problem("../json/x3cube.json")
+
+    node = TreeNode(1, problem.initial, 6, None, 1)
     print(node.getF())
     
 if __name__ == '__main__':
