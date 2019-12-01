@@ -4,6 +4,7 @@ import os
 import json
 from sys import platform
 
+
 class JsonManager:
     def jsonSelection():
         cwd = JsonManager.currentDirectory() + 'json/'
@@ -73,8 +74,11 @@ class JsonManager:
             cwd = os.getcwd().split('\\')[-1]
         else:
             cwd = os.getcwd().split('/')[-1]
-        if cwd == 'src': cwd = '../'
-        elif cwd == 'rubiks-cube': cwd = './'
-        elif cwd == 'testing' : cwd = '../'
+        if cwd == 'src':
+            cwd = '../'
+        elif cwd == 'rubiks-cube':
+            cwd = './'
+        elif cwd == 'testing':
+            cwd = '../'
 
         return cwd

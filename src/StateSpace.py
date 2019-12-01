@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from JsonManager import JsonManager as jManager
-from TreeNode import TreeNode
 from State import State
-from pprint import pprint
 
 class StateSpace:
     def __init__(self, json):
