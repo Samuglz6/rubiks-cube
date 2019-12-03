@@ -16,8 +16,9 @@ class Problem():
         goal = False
 
         for face in state.current.faces.values():
-            color = set(face[0]).union(set(face[1]))
-
+            color = set()
+            for x in range(state.current.size):
+                color = color.union(set(face[x]))
             if (len(color) == 1):
                 goal = True
             else:

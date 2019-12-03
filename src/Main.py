@@ -63,7 +63,7 @@ def askData():
     if strategy == 2 or strategy in switch.get(2):
         max_depth = int(input("Choose the maximum depth: "))
     else:
-        max_depth = 6
+        max_depth = 99
 
     if strategy == 3 or strategy in switch.get(3):
         increment = input("Specify the increment: ")
