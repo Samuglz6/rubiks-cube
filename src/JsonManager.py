@@ -6,6 +6,18 @@ from sys import platform
 
 
 class JsonManager:
+    def jsonReading(file=None):
+        data = None
+        if file is None: file = JsonManager.jsonSelection()
+        try:
+            with open(file, 'r') as output:
+                data = json.load(output)
+                output.close()
+        except:
+            print("READING ERROR. The introduced file doesn't exist.")
+
+        return JsonManager.jsonChecking(data)
+
     def jsonSelection():
         cwd = JsonManager.currentDirectory() + 'json/'
 
@@ -27,19 +39,7 @@ class JsonManager:
         path = cwd + selected + '.json'
 
         return path
-
-    def jsonReading(file=None):
-        data = None
-        if file is None: file = JsonManager.jsonListing()
-        try:
-            with open(file, 'r') as output:
-                data = json.load(output)
-                output.close()
-        except:
-            print("READING ERROR. The introduced file doesn't exist.")
-
-        return JsonManager.jsonChecking(data)
-
+        
     def jsonWriting(name, cube):
         path = JsonManager.currentDirectory() + 'output/'
         with open(path + name + '.json', 'w+') as file:
