@@ -20,8 +20,8 @@ class TreeNode:
     def selection(self, strategy):
           if strategy == 0: return self.d
           if strategy == 1: return round(1/(self.d+1), 2)
-          if strategy == 2: return ''
-          if strategy == 3: return ''
+          if strategy == 2: return round(1/(self.d+1), 2)
+          if strategy == 3: return round(1/(self.d+1), 2)
           if strategy == 4: return self.pathCost
           if strategy == 5: return self.pathCost+self.calculateHeuristic()
           if strategy == 6: return self.calculateHeuristic()

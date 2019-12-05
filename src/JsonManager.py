@@ -39,7 +39,7 @@ class JsonManager:
         path = cwd + selected + '.json'
 
         return path
-        
+
     def jsonWriting(name, cube):
         path = JsonManager.currentDirectory() + 'output/'
         with open(path + name + '.json', 'w+') as file:

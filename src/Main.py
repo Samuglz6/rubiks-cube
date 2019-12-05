@@ -63,7 +63,7 @@ def askData():
     if strategy == 2 or strategy in switch.get(2):
         max_depth = int(input("Choose the maximum depth: "))
     else:
-        max_depth = 99
+        max_depth = 9
 
     if strategy == 3 or strategy in switch.get(3):
         increment = input("Specify the increment: ")
@@ -94,7 +94,7 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_no
                     if node.state.md5 not in problem.visitedList:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
-                    elif node.f < problem.visitedList[node.state.md5]:
+                    elif node.f > problem.visitedList[node.state.md5]:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
             else:
@@ -111,11 +111,13 @@ def search(problem, strategy, max_depth, increment, pruning):
     solution = None
     while (not solution) and (actual_depth <= max_depth):
         solution = bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_nodes)
-        depth = actual_depth + increment
+        actual_depth = actual_depth + increment
     return solution
 
 def generateSol(solution, node):
-    if(node.parent is None):
+    if node is None:
+        solution = None
+    elif(node.parent is None):
         solution.append("["+str(node.id)+"](["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
     else:
         generateSol(solution, node.parent)
@@ -126,10 +128,11 @@ def writeSolution(solution, node):
         print("A solution has been found.")
         print("The solution has been saved: rubiks-cube/output/solution.txt")
         print("You can also check the result of the faces: rubiks-cube/output/solution.json ")
-    else:
-        print("No solution found.")
 
-    jManager.jsonWriting('solution', node.state.current)
+        jManager.jsonWriting('solution', node.state.current)
+    else:
+        print("There is no solution for the options you have chosen.")
+        jManager.jsonWriting('solution', None)
 
     with open(jManager.currentDirectory()+"output/solution.txt", "w+") as text_file:
         text_file.write('\n'.join([element for element in solution]))
