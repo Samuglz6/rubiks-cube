@@ -1,7 +1,0 @@
-[0]([None]3b607235dbfa8a63ec664280d84c56af, cost = 0, depth = 0, f = 4.44)
-[7]([D0]15510725f69ac2abd72bfd7955f53b20, cost = 1, depth = 1, f = 5.03)
-[23]([b1]8d43ad2830ce202e91f910045c135817, cost = 2, depth = 2, f = 5.470000000000001)
-[183]([B2]59ccd17008d25308b222ba747762f7a9, cost = 3, depth = 3, f = 6.4)
-[2231]([l1]04115f24217e15d8a1c968f41f575978, cost = 4, depth = 4, f = 6.7)
-[4615]([D0]85955eabfe96c2423f3704c825063957, cost = 5, depth = 5, f = 6.7)
-[4632]([b2]ffe2a82bd4117b6f1a38ee8ab383c3f0, cost = 6, depth = 6, f = 7.23)

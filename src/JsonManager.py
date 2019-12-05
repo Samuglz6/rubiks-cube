@@ -43,7 +43,8 @@ class JsonManager:
     def jsonWriting(name, cube):
         path = JsonManager.currentDirectory() + 'output/'
         with open(path + name + '.json', 'w+') as file:
-            file.write(json.dumps(cube.faces))
+            if cube is not None: file.write(json.dumps(cube.faces))
+            else: file.write("")
             file.close()
 
     def jsonComparison(file1, file2):
