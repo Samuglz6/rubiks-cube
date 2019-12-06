@@ -21,7 +21,7 @@ def main():
 
     print("\nGenerating the solution...")
     generateSol(solution, node)
-    writeSolution(solution, node)
+    writeSolution(solution, node, strategy)
 
 def askData():
     json = jManager.jsonSelection()
@@ -63,7 +63,7 @@ def askData():
     if strategy == 2 or strategy in switch.get(2):
         max_depth = int(input("Choose the maximum depth: "))
     else:
-        max_depth = 9
+        max_depth = 6
 
     if strategy == 3 or strategy in switch.get(3):
         increment = input("Specify the increment: ")
@@ -94,7 +94,7 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_no
                     if node.state.md5 not in problem.visitedList:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
-                    elif node.f > problem.visitedList[node.state.md5]:
+                    elif node.f < problem.visitedList[node.state.md5]:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
             else:
@@ -123,7 +123,11 @@ def generateSol(solution, node):
         generateSol(solution, node.parent)
         solution.append("["+str(node.id)+"](["+str(node.action)+"]"+str(node.state.md5)+", cost = "+str(node.pathCost)+", depth = "+str(node.d)+", f = "+str(node.f)+")")
 
-def writeSolution(solution, node):
+def writeSolution(solution, node, strategy):
+    switch = {0: ['Breath First Search', 'BFS'], 1: ['Depth First Search', 'DFS'], 2:
+    ['Depth Limited Search', 'DLS'], 3: ['Iterative Deepening Search', 'IDS'],
+    4: ['Uniform Cost Search', 'UCS'], 5: 'A*', 6: 'Greedy'}
+    
     if node is not None:
         print("A solution has been found.")
         print("The solution has been saved: rubiks-cube/output/solution.txt")
@@ -135,9 +139,12 @@ def writeSolution(solution, node):
         jManager.jsonWriting('solution', None)
 
     with open(jManager.currentDirectory()+"output/solution.txt", "w+") as text_file:
+        text_file.write(' '.join(switch[strategy]))
+        text_file.write('\n======================\n')
         text_file.write('\n'.join([element for element in solution]))
 
-
+    text_file.close()
+    
 if __name__ == '__main__':
     try:
         main()

@@ -15,16 +15,20 @@ def main():
     fringe = Frontier()
 
     print("Inserting...\n")
-    for i in range(10):
-        node = TreeNode(problem.initial, 2, None, 1)
+    for i in range(5, 0, -1):
+        node = TreeNode(i, problem.initial, 0, None, 1, None, 1)
+        fringe.insert(node)
+
+    for i in range(6,11,1):
+        node = TreeNode(i, problem.initial, 0, None, 1, None, 2)
         fringe.insert(node)
 
     print("Elements:")
     for element in fringe.frontier:
-        print((element.getF(), element))
+        print("id: ", element.id, "f: " ,element.getF())
 
     print("\nRemoving...")
-    for i in range(10):
+    while not fringe.isEmpty():
         fringe.remove()
 
     print("\nisEmpty: ", fringe.isEmpty())

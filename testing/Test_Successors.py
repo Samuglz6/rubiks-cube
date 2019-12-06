@@ -9,13 +9,10 @@ from pprint import pprint
 
 
 def main():
-    problem = Problem("../json/x2cube.json")
+    problem = Problem("../json/x3cube.json")
     list = problem.stateSpace.successors(problem.initial, 8, 10)
+    print("Successors list for", problem.stateSpace.path, ":")
     for (move, state, cost) in list:
-        print("\n---------- Movement: ", move, "-------------")
-        print("\n\tOriginal")
-        pprint(problem.initial.current.faces)
-        print("\n\tChanged")
-        pprint(state.current.faces)
+        print("move: ", move, " state: ", state, " cost: ", cost)
 if __name__ == '__main__':
     main()
