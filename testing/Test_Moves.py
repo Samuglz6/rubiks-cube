@@ -16,7 +16,7 @@ def start():
         print("\nTest has been interrupted")
 
 def testConsecutiveMoves():
-    cube = Cube(jManager.jsonReading("../json/x4cube.json"))
+    cube = Cube(jManager.jsonReading("../json/check/x3cube.json"))
     state = State(cube)
     print(state.md5)
 

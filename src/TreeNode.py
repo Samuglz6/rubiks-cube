@@ -19,9 +19,9 @@ class TreeNode:
 
     def selection(self, strategy):
           if strategy == 0: return self.d
-          if strategy == 1: return round(1/(self.d+1), 2)
-          if strategy == 2: return round(1/(self.d+1), 2)
-          if strategy == 3: return round(1/(self.d+1), 2)
+          if strategy == 1: return round(1/(self.d+1),2)
+          if strategy == 2: return round(1/(self.d+1),2)
+          if strategy == 3: return round(1/(self.d+1),2)
           if strategy == 4: return self.pathCost
           if strategy == 5: return self.pathCost+self.calculateHeuristic()
           if strategy == 6: return self.calculateHeuristic()
@@ -40,13 +40,13 @@ class TreeNode:
 
             #Now we get the number of tiles of each color for a specific face
             for list in self.state.current.faces[face]:
-                for color in set(list):
+                for color in list:
                     counter[color] += 1
 
             #calculation of the entropy for each face
             for c in range(6):
                 if counter[c] > 0.0:
-                    entropy[face] = entropy[face] + counter[c]/(N*N) * math.log(counter[c]/(N*N),6)
+                    entropy[face] = entropy[face] + counter[c]/(N*N) * math.log(counter[c]/((N)*(N)),6)
 
         #Addition of the entropy of each face in order to calculate h
         for face in entropy:

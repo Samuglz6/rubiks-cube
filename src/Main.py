@@ -94,9 +94,12 @@ def bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_no
                     if node.state.md5 not in problem.visitedList:
                         frontier.insert(node)
                         problem.visitedList[node.state.md5] = node.f
+                    elif strategy == 1 and node.f > problem.visitedList[node.state.md5]:
+                            frontier.insert(node)
+                            problem.visitedList[node.state.md5] = node.f
                     elif node.f < problem.visitedList[node.state.md5]:
-                        frontier.insert(node)
-                        problem.visitedList[node.state.md5] = node.f
+                            frontier.insert(node)
+                            problem.visitedList[node.state.md5] = node.f
             else:
                 for node in node_list:
                     frontier.insert(node)
@@ -112,6 +115,7 @@ def search(problem, strategy, max_depth, increment, pruning):
     while (not solution) and (actual_depth <= max_depth):
         solution = bounded_search(problem, strategy, actual_depth, max_depth, pruning, total_nodes)
         actual_depth = actual_depth + increment
+
     return solution
 
 def generateSol(solution, node):
@@ -127,7 +131,7 @@ def writeSolution(solution, node, strategy):
     switch = {0: ['Breath First Search', 'BFS'], 1: ['Depth First Search', 'DFS'], 2:
     ['Depth Limited Search', 'DLS'], 3: ['Iterative Deepening Search', 'IDS'],
     4: ['Uniform Cost Search', 'UCS'], 5: 'A*', 6: 'Greedy'}
-    
+
     if node is not None:
         print("A solution has been found.")
         print("The solution has been saved: rubiks-cube/output/solution.txt")
@@ -144,7 +148,7 @@ def writeSolution(solution, node, strategy):
         text_file.write('\n'.join([element for element in solution]))
 
     text_file.close()
-    
+
 if __name__ == '__main__':
     try:
         main()

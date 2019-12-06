@@ -9,7 +9,7 @@ from pprint import pprint
 
 
 def main():
-    problem = Problem("../json/x3cube.json")
+    problem = Problem("../json/x5cube.json")
     list = problem.stateSpace.successors(problem.initial, 8, 10)
     print("Successors list for", problem.stateSpace.path, ":")
     for (move, state, cost) in list:
