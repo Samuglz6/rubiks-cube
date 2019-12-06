@@ -69,5 +69,5 @@ Now you just have to follow the instructions given by the program:
 3. Choose if you want to use pruning or not
 4. Wait for the solution
 5. You can consult the solution of the cube in the project's folder _output_:
-_solution.json_ shows the final result of the cube; solution.txt has the information
-of the path to reach the solution.
+  _solution.json_ shows the final result of the cube
+  _solution.txt_ has the information of the path to reach the solution.
